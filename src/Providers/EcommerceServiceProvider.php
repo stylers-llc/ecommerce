@@ -33,12 +33,13 @@ class EcommerceServiceProvider extends ServiceProvider
     protected function publishDatabase()
     {
         $this->publishes([
-            __DIR__ . '/../../database/migrations/' => database_path('/migrations')
+            __DIR__ . '/../../database/Migrations/' => database_path('/migrations')
         ], 'migrations');
-
+        /*
         $this->publishes([
             __DIR__ . '/../../database/seeds/' => database_path('/seeds')
         ], 'seeds');
+        */
     }
 
     /**

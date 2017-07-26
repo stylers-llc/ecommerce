@@ -52,5 +52,7 @@ class ProductSetter extends Setter
         $this->product->type_taxonomy_id = $this->attributes['type_taxonomy_id'];
         $this->product->name_description_id = $nameDescription->id;
         $this->product->saveOrFail();
+
+        return $this->product;
     }
 }

@@ -59,6 +59,8 @@ class EcommerceServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        $this->commands([
+            \Stylers\Ecommerce\Console\ProductImportCommand::class
+        ]);
     }
 }

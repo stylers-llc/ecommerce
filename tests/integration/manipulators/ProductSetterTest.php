@@ -1,6 +1,7 @@
 <?php
 
 use Stylers\Ecommerce\Manipulators\ProductSetter;
+use Stylers\Ecommerce\Entities\ProductEntity;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Stylers\Taxonomy\Exceptions\UserException;
 
@@ -84,6 +85,46 @@ class ProductSetterTest extends TestCase {
             'is_active' => true
         ];
         $setter = new ProductSetter($product);
+    }
+
+
+    /**
+    * @test
+    */
+    public function it_could_create_product()
+    {
+        $product = [
+            'product_type' => 'equipment',
+            'is_active' => true,
+            'name' => [
+                'en' => 'Test'
+            ]
+        ];
+        $setter = new ProductSetter($product);
+        $product = $setter->set();
+    }
+
+    /**
+    * @test
+    */
+    public function it_equals_with_its_entity()
+    {
+        $productArray = [
+            'product_type' => 'equipment',
+            'is_active' => true,
+            'name' => [
+                'en' => 'Test'
+            ]
+        ];
+        $setter = new ProductSetter($productArray);
+        $product = $setter->set();
+
+        $entity = new ProductEntity($product);
+        $entityData = $entity->getFrontendData();
+
+        $this->assertEquals($productArray['is_active'], $entityData['is_active']);
+        $this->assertEquals($productArray['product_type'], $entityData['product_type']);
+        $this->assertEquals($productArray['name'], $entityData['name']);
     }
 }
 

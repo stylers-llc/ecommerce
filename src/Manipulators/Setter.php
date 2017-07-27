@@ -81,4 +81,11 @@ abstract class Setter
             throw new UserException('Invalid parameters not boolean');
         }
     }
+
+    protected static function positive_number($data)
+    {
+        if ((filter_var($data, FILTER_VALIDATE_FLOAT) === false) OR ($data < 0)) {
+            throw new UserException('Not positive number');
+        }
+    }
 }

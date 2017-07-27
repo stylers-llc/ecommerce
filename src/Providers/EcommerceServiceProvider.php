@@ -49,6 +49,13 @@ class EcommerceServiceProvider extends ServiceProvider
         });
     }
 
+    protected function publishAssets()
+    {
+        $this->publishes([
+            __DIR__ . '/../../public/' => public_path('/plugins/ecommerce')
+        ], 'public');
+    }
+
     protected function bootViewLocations()
     {
         View::addLocation(__DIR__ . '/../Views/');
@@ -65,6 +72,7 @@ class EcommerceServiceProvider extends ServiceProvider
         $this->publishDatabase();
         $this->bootRoutes();
         $this->bootViewLocations();
+        $this->publishAssets();
     }
 
     /**

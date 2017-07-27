@@ -154,5 +154,89 @@ class ProductSetterTest extends TestCase {
         $entityData = $entity->getFrontendData();
         $this->assertEquals($productArray['descriptions'], $entityData['descriptions']);
     }
+
+    /**
+    * @test
+    */
+    public function product_could_have_price()
+    {
+        $productArray = [
+            'price' => 499.99,
+            'product_type' => 'equipment',
+            'is_active' => true,
+            'name' => [
+                'en' => 'Test'
+            ],
+            'descriptions' => [
+                'short_description' => [
+                    'en' => 'Short description'
+                ],
+                'long_description' => [
+                    'en' => 'Short description'
+                ]
+            ]
+        ];
+
+        $setter = new ProductSetter($productArray);
+        $product = $setter->set();
+
+        $entity = new ProductEntity($product);
+        $entityData = $entity->getFrontendData();
+        $this->assertEquals($productArray['price'], $entityData['price']);
+    }
+
+    /**
+    * @test
+    * @expectedException Stylers\Taxonomy\Exceptions\UserException
+    */
+    public function price_have_to_be_positive()
+    {
+        $productArray = [
+            'price' => -499.99,
+            'product_type' => 'equipment',
+            'is_active' => true,
+            'name' => [
+                'en' => 'Test'
+            ],
+            'descriptions' => [
+                'short_description' => [
+                    'en' => 'Short description'
+                ],
+                'long_description' => [
+                    'en' => 'Short description'
+                ]
+            ]
+        ];
+
+        $setter = new ProductSetter($productArray);
+        $product = $setter->set();
+    }
+
+    /**
+    * @test
+    * @expectedException Stylers\Taxonomy\Exceptions\UserException
+    */
+    public function price_have_to_be_number()
+    {
+        $productArray = [
+            'price' => 'low',
+            'product_type' => 'equipment',
+            'is_active' => true,
+            'name' => [
+                'en' => 'Test'
+            ],
+            'descriptions' => [
+                'short_description' => [
+                    'en' => 'Short description'
+                ],
+                'long_description' => [
+                    'en' => 'Short description'
+                ]
+            ]
+        ];
+
+        $setter = new ProductSetter($productArray);
+        $product = $setter->set();
+    }
 }
 

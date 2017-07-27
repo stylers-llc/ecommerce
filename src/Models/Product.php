@@ -17,10 +17,10 @@ class Product extends Model
         'name_description_id',
         'type_taxonomy_id',
         'is_active',
+        'price',
         'created_at',
         'updated_at',
-        'deleted_at',
-        'location_id'
+        'deleted_at'
     ];
 
     public function name() {

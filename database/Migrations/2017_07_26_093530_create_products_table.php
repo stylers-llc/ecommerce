@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration
             $table->integer('name_description_id')->unsigned();
             $table->integer('type_taxonomy_id')->unsigned();
             $table->boolean('is_active')->default(0);
+            $table->double('price', 9, 2)->nullable();
             $table->timestamps();
             $table->softDeletes();
 

@@ -23,7 +23,8 @@ class ProductEntity
             'is_active' => (bool) $this->product->is_active,
             'product_type' => $this->product->type->name,
             'name' => $this->getDescriptionWithTranslationsData($this->product->name),
-            'descriptions' => $this->getProductDescriptionsData($this->product->id)
+            'descriptions' => $this->getProductDescriptionsData($this->product->id),
+            'price' => $this->product->price
         ];
 
         return $return;

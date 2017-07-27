@@ -36,6 +36,9 @@ class ProductSetter extends Setter
             'is_active' => [
                 'is_boolean' => true
             ],
+            'price' => [
+                'positive_number' => true
+            ]
         ]
     ];
 
@@ -52,6 +55,7 @@ class ProductSetter extends Setter
         $this->product->is_active = $this->attributes['is_active'];
         $this->product->type_taxonomy_id = $this->attributes['type_taxonomy_id'];
         $this->product->name_description_id = $nameDescription->id;
+        $this->product->price = (!empty($this->attributes['price'])) ? $this->attributes['price'] : null;
         $this->product->saveOrFail();
 
         if(!empty($this->attributes['descriptions']['short_description'])) {

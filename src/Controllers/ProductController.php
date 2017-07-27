@@ -26,6 +26,12 @@ class ProductController extends Controller
 
         return View::make('productList', ['productList' => $productList]);
     }
+
+    public function productShow(Request $request, $id)
+    {
+        $productData = $this->show($request, $id);
+        return View::make('productShow', ['product' => $productData['data']]);
+    }
 }
 
 

@@ -8,4 +8,5 @@ Route::group([
     Route::get('products', 'ProductController@index');
     Route::get('products/list', 'ProductController@productList');
     Route::get('product/{id}', 'ProductController@show');
+    Route::get('product/show/{id}', 'ProductController@productShow');
 });

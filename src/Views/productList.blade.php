@@ -5,6 +5,7 @@
             <div class="caption">
                 <h3>{{$product['name']['en']}}</h3>
                 <p>{{$product['descriptions']['short_description']['en']}}</p>
+                <p><a href="{{ url('ecommerce/product/show', $product['id']) }}" class="btn btn-primary" role="button">More</a></p>
             </div>
         </div>
     </div>

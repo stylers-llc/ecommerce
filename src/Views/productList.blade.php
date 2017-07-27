@@ -4,6 +4,7 @@
         <div class="thumbnail">
             <div class="caption">
                 <h3>{{$product['name']['en']}}</h3>
+                <p>{{$product['descriptions']['short_description']['en']}}</p>
             </div>
         </div>
     </div>

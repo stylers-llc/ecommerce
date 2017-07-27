@@ -5,6 +5,7 @@ namespace Stylers\Ecommerce\Manipulators;
 
 use Illuminate\Support\Facades\Config;
 use Stylers\Ecommerce\Models\Product;
+use Stylers\Ecommerce\Models\ProductDescription;
 use Stylers\Taxonomy\Manipulators\DescriptionSetter;
 
 class ProductSetter extends Setter
@@ -52,6 +53,24 @@ class ProductSetter extends Setter
         $this->product->type_taxonomy_id = $this->attributes['type_taxonomy_id'];
         $this->product->name_description_id = $nameDescription->id;
         $this->product->saveOrFail();
+
+        if(!empty($this->attributes['descriptions']['short_description'])) {
+            (new ProductDescription())->setDescription(
+                self::CONNECTION_COLUMN,
+                $this->product->id,
+                Config::get('ecommerce.product_description_types.short_description'),
+                $this->attributes['descriptions']['short_description']
+            );
+        }
+
+        if(!empty($this->attributes['descriptions']['long_description'])) {
+            (new ProductDescription())->setDescription(
+                self::CONNECTION_COLUMN,
+                $this->product->id,
+                Config::get('ecommerce.product_description_types.long_description'),
+                $this->attributes['descriptions']['long_description']
+            );
+        }
 
         return $this->product;
     }

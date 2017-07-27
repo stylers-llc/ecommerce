@@ -3,6 +3,7 @@
 namespace Stylers\Ecommerce\Providers;
 
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class EcommerceServiceProvider extends ServiceProvider
@@ -41,6 +42,18 @@ class EcommerceServiceProvider extends ServiceProvider
         ], 'seeds');
     }
 
+    protected function bootRoutes()
+    {
+        $this->app->booted(function () {
+            require __DIR__ . '/../routes.php';
+        });
+    }
+
+    protected function bootViewLocations()
+    {
+        View::addLocation(__DIR__ . '/../Views/');
+    }
+
     /**
      * Bootstrap the application events.
      *
@@ -50,6 +63,8 @@ class EcommerceServiceProvider extends ServiceProvider
     {
         $this->registerConfig();
         $this->publishDatabase();
+        $this->bootRoutes();
+        $this->bootViewLocations();
     }
 
     /**

@@ -126,5 +126,33 @@ class ProductSetterTest extends TestCase {
         $this->assertEquals($productArray['product_type'], $entityData['product_type']);
         $this->assertEquals($productArray['name'], $entityData['name']);
     }
+
+    /**
+    * @test
+    */
+    public function product_could_have_descriptions()
+    {
+        $productArray = [
+            'product_type' => 'equipment',
+            'is_active' => true,
+            'name' => [
+                'en' => 'Test'
+            ],
+            'descriptions' => [
+                'short_description' => [
+                    'en' => 'Short description'
+                ],
+                'long_description' => [
+                    'en' => 'Short description'
+                ]
+            ]
+        ];
+        $setter = new ProductSetter($productArray);
+        $product = $setter->set();
+
+        $entity = new ProductEntity($product);
+        $entityData = $entity->getFrontendData();
+        $this->assertEquals($productArray['descriptions'], $entityData['descriptions']);
+    }
 }
 

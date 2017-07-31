@@ -69,6 +69,33 @@ class CreateProductsTable extends Migration
             $table->foreign('taxonomy_id')->references('id')->on('taxonomies');
             $table->foreign('description_id')->references('id')->on('descriptions');
         });
+
+        Schema::create('baskets', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->integer('basket_status_tx_id')->unsigned();
+            $table->string('currency')->nullable();
+            $table->integer('total')->unsigned()->default(0);
+
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('basket_status_tx_id')->references('id')->on('taxonomies');
+        });
+
+        Schema::create('basket_products', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('basket_id')->unsigned()->nullable();
+            $table->integer('product_id')->unsigned();
+            $table->double('price', 8, 2)->nullable();
+            $table->smallInteger('qty')->default(1)->nullable();
+
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('basket_id')->references('id')->on('baskets');
+            $table->foreign('product_id')->references('id')->on('products');
+        });
     }
 
     /**
@@ -78,6 +105,18 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
+
+        Schema::table('basket_products', function (Blueprint $table) {
+            $table->dropForeign(['basket_id']);
+            $table->dropForeign(['product_id']);
+        });
+        Schema::dropIfExists('basket_products');
+
+        Schema::table('baskets', function (Blueprint $table) {
+            $table->dropForeign(['basket_status_tx_id']);
+        });
+        Schema::dropIfExists('baskets');
+
         Schema::table('product_descriptions', function(Blueprint $table) {
             $table->dropForeign(['description_id']);
             $table->dropForeign(['taxonomy_id']);

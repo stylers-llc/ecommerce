@@ -60,11 +60,12 @@ class PayPal
             ->setTotal($this->_basket->total);
             //->setDetails($details);
 
+        $date = new \DateTime();
         $transaction = new PayPalTransaction();
         $transaction->setAmount($amount)
             ->setItemList($itemList)
             //->setDescription("Payment description")
-            ->setInvoiceNumber($this->_basket->id);
+            ->setInvoiceNumber($this->_basket->id."#".$date->getTimestamp());
 
         $redirectUrls = new RedirectUrls();
         $redirectUrls->setReturnUrl(url('ecommerce/paymentStatus'))

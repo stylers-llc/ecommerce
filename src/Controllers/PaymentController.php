@@ -11,6 +11,7 @@ use Stylers\Ecommerce\Models\Basket;
 use Stylers\Ecommerce\Models\Cart;
 use Stylers\Ecommerce\Models\PayPal;
 use Stylers\Ecommerce\Models\Transaction;
+use Illuminate\Support\Facades\View;
 
 class PaymentController extends Controller
 {
@@ -39,12 +40,12 @@ class PaymentController extends Controller
 
         if(is_null($payment_id) || $payment_id != $requestData['paymentId']) {
             Session::put('error','Payment failed');
-            return Redirect::getUrlGenerator('ecommerce/cart/list');
+            return Redirect::route('ecommerce.cart.list');
         }
 
         if (empty($requestData['PayerID']) || empty($requestData['token'])) {
             Session::put('error','Payment failed');
-            return Redirect::getUrlGenerator('ecommerce/cart/list');
+            return Redirect::route('ecommerce.cart.list');
         }
 
         $success = (new PayPal($transaction->basket))
@@ -53,10 +54,10 @@ class PaymentController extends Controller
         if($success) {
             Cart::clear();
             Session::put('success','Payment success');
-            return Redirect::getUrlGenerator('ecommerce/success');
+            return Redirect::route('ecommerce.success');
         } else {
             Session::put('error','Payment failed');
-            return Redirect::getUrlGenerator('ecommerce/cart/list');
+            return Redirect::route('ecommerce.cart.list');
         }
     }
 

@@ -80,6 +80,7 @@ class CreateProductsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('basket_status_tx_id')->references('id')->on('taxonomies');
         });
 
@@ -96,6 +97,20 @@ class CreateProductsTable extends Migration
             $table->foreign('basket_id')->references('id')->on('baskets');
             $table->foreign('product_id')->references('id')->on('products');
         });
+
+        Schema::create('transactions', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('payment_id', 256)->unique();
+
+            $table->integer('basket_id')->unsigned();
+            $table->integer('pay_status_tx_id')->unsigned();
+
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('basket_id')->references('id')->on('baskets');
+            $table->foreign('pay_status_tx_id')->references('id')->on('taxonomies');
+        });
     }
 
     /**
@@ -105,6 +120,12 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
+        Schema::table('transactions', function (Blueprint $table) {
+            $table->dropForeign(['basket_id']);
+            $table->dropForeign(['pay_status_tx_id']);
+            $table->dropUnique(['payment_id']);
+        });
+        Schema::dropIfExists('transactions');
 
         Schema::table('basket_products', function (Blueprint $table) {
             $table->dropForeign(['basket_id']);
@@ -113,6 +134,7 @@ class CreateProductsTable extends Migration
         Schema::dropIfExists('basket_products');
 
         Schema::table('baskets', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
             $table->dropForeign(['basket_status_tx_id']);
         });
         Schema::dropIfExists('baskets');

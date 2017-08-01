@@ -21,7 +21,9 @@
     "require": {
         "php": ">=7.0",
         "laravel/framework": "5.*",
-        "stylers/taxonomy": "1.*"
+        "stylers/taxonomy": "1.*",
+        "paypal/rest-api-sdk-php": "*",
+        "guzzlehttp/guzzle": "~6"
     },
     "autoload": {
         "psr-4": {

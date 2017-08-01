@@ -4,16 +4,21 @@ namespace Stylers\Ecommerce\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\View;
-use Stylers\Ecommerce\Entities\ProductEntity;
-use Stylers\Ecommerce\Models\Product;
+use Illuminate\Support\Facades\Redirect;
+use Stylers\Ecommerce\Models\Basket;
+use Stylers\Ecommerce\Models\Cart;
 
 class PaymentController extends Controller
 {
     public function checkout(Request $request)
     {
         $cartList = $request->all();
-        echo '<pre>';
-        var_dump($cartList);
+        Cart::update($cartList);
+        if(Cart::getProductCount() < 1){
+            Redirect::route('ecommerce/products/list');
+        }
+
+        $basket = Basket::createBasket(Cart::get()['cart']);
+        Cart::clear();
     }
 }

@@ -12,7 +12,7 @@
         </div>
     @endforeach
     <div>
-        Total:<div id="sum"></div>
+        Total:<div id="sum">0</div>
     </div>
     <button type="button" class="btn-primary btn btn-sm" id="checkout">Checkout</button>
 @endsection
@@ -20,11 +20,12 @@
 @section('script')
     <script type="text/javascript">
         let cartList = {!! $cartListJson !!};
-        let cart = cartList.cart;
+        console.log(cartList);
+        let cart = cartList.cart || {};
 
         const calculateSum = () => {
             let sum = 0;
-            let productIds = Object.keys(cartList.cart);
+            let productIds = Object.keys(cart);
             for(let i = 0; i < productIds.length; i++) {
                 sum += $('input.productNumber#'+productIds[i]).val() * cartList.products[productIds[i]].price;
             }
@@ -32,18 +33,32 @@
         };
 
         const updateCart = () => {
-            let productIds = Object.keys(cartList.cart);
+            let productIds = Object.keys(cart);
             for(let i = 0; i < productIds.length; i++) {
                 cart[productIds[i]] = Number.parseInt($('input.productNumber#'+productIds[i]).val());
             }
-            console.log(cart);
+        };
+
+        const disableUselessButton = () => {
+            let sum = 0;
+            let productIds = Object.keys(cart);
+            for(let i = 0; i < productIds.length; i++) {
+                sum += $('input.productNumber#'+productIds[i]).val();
+            }
+            if(sum < 1) {
+                $('button#checkout').prop('disabled', true);
+            } else {
+                $('button#checkout').prop('disabled', false);
+            }
         };
 
         $(document).ready(()=>{
             calculateSum();
+            disableUselessButton();
 
             $('input.productNumber').on('change',(event) => {
                 calculateSum();
+                disableUselessButton();
             });
 
             $('button#checkout').on('click',(event) => {

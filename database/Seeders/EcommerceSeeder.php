@@ -17,6 +17,7 @@ class EcommerceSeeder extends Seeder
         Model::unguard();
         $this->seedProductTypes();
         $this->seedProductDescriptions();
+        $this->seedBasketStatuses();
     }
 
     protected function seedProductTypes() {
@@ -38,6 +39,19 @@ class EcommerceSeeder extends Seeder
         $parentTx->save();
 
         foreach (Config::get('ecommerce.product_description_types') as $name => $id) {
+            $tx = Taxonomy::loadTaxonomy($id);
+            $tx->name = $name;
+            $tx->save();
+            $tx->makeChildOf($parentTx);
+        }
+    }
+
+    protected function seedBasketStatuses(){
+        $parentTx = Taxonomy::loadTaxonomy(Config::get('ecommerce.basket_status'));
+        $parentTx->name = 'basket_status';
+        $parentTx->save();
+
+        foreach (Config::get('ecommerce.basket_statuses') as $name => $id) {
             $tx = Taxonomy::loadTaxonomy($id);
             $tx->name = $name;
             $tx->save();

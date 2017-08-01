@@ -15,6 +15,8 @@ Route::group([
     Route::get('cart/add/{id}', 'CartController@add');
 
     Route::any('checkout', 'PaymentController@checkout');
+    Route::any('paymentStatus', 'PaymentController@paymentStatus');
+    Route::any('success', 'PaymentController@success');
 });
 
 // Route::post('ecommerce/checkout', 'Stylers\Ecommerce\Controllers\PaymentController@checkout');

@@ -4,6 +4,11 @@
 
 @section('content')
     <h3>Products</h3>
+    @if (!is_null($error))
+        <div class="alert alert-danger">
+            <strong>Error!</strong>{{ $error }}
+        </div>
+    @endif
     @foreach ($cartList["products"] as $id => $product)
         <div class="form-group">
             <label for="{{ $id }}">{{ $product['name']['en'] }}</label>

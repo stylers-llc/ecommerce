@@ -58,10 +58,13 @@ class Basket extends Model
         $this->save();
     }
 
-    public static function createBasket(array $cart) : Basket {
+    public static function createBasket(array $cart, int $userId = null) : Basket {
         $basket = new Basket();
         $basket->basket_status_tx_id = config('ecommerce.basket_statuses.created');
         $basket->currency = config('ecommerce.default_currency');
+        if($userId) {
+            $basket->user_id = $userId;
+        }
         $basket->save();
 
         foreach($cart as $productId => $productNumber) {

@@ -12,6 +12,7 @@ use Stylers\Ecommerce\Models\Cart;
 use Stylers\Ecommerce\Models\PayPal;
 use Stylers\Ecommerce\Models\Transaction;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
@@ -23,7 +24,7 @@ class PaymentController extends Controller
             Redirect::getUrlGenerator('ecommerce/products/list');
         }
 
-        $basket = Basket::createBasket(Cart::get()['cart']);
+        $basket = Basket::createBasket(Cart::get()['cart'], Auth::user()->id);
 
         return (new PayPal($basket))->createPayment();
     }

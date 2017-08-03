@@ -17,13 +17,6 @@ class Basket extends Model
         'total'
     ];
 
-    /*
-    public function user()
-    {
-        return $this->hasOne(User::class, 'id', 'user_id');
-    }
-    */
-
     public function status()
     {
         return $this->hasOne(Taxonomy::class, 'id', 'basket_status_tx_id');

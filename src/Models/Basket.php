@@ -29,6 +29,11 @@ class Basket extends Model
         return $this->hasOne(Taxonomy::class, 'id', 'basket_status_tx_id');
     }
 
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
     public function basketProducts()
     {
         return $this->hasMany(BasketProduct::class, 'basket_id', 'id');

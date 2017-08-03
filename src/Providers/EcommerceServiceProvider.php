@@ -15,7 +15,6 @@ class EcommerceServiceProvider extends ServiceProvider
      */
     protected $defer = false;
 
-
     /**
      * Register config.
      *

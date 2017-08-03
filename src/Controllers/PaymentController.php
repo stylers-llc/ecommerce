@@ -5,8 +5,10 @@ namespace Stylers\Ecommerce\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Stylers\Ecommerce\Events\PaymentSuccessEvent;
 use Stylers\Ecommerce\Models\Basket;
 use Stylers\Ecommerce\Models\Cart;
 use Stylers\Ecommerce\Models\PayPal;
@@ -55,6 +57,9 @@ class PaymentController extends Controller
         if($success) {
             Cart::clear();
             Session::put('success','Payment success');
+
+            Event::fire(new PaymentSuccessEvent($transaction->basket));
+
             return Redirect::route('ecommerce.success');
         } else {
             Session::put('error','Payment failed');
@@ -65,7 +70,9 @@ class PaymentController extends Controller
     public function success()
     {
         $success = Session::get('success');
-        Session::forget('success');
-        return View::make('paymentSuccess',['success' => $success]);
+        if($success) {
+            Session::forget('success');
+            return View::make('paymentSuccess',['success' => $success]);
+        }
     }
 }

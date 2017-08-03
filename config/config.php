@@ -24,6 +24,7 @@ return [
         'canceled' => 513
     ],
     'default_currency' => 'CAD',
+    'email_from' => 'example@dot.com',
     'paypal' => [
         'client_id' => 'client',
         'secret' => 'secret',

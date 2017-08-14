@@ -1,7 +1,7 @@
 <?php
 
 Route::group([
-    'middleware' => ['web'],
+    'middleware' => [],
     'prefix' => 'ecommerce',
     'namespace' => 'Stylers\Ecommerce\Controllers'
 ], function () {
@@ -12,7 +12,7 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => ['web','auth'],
+    'middleware' => ['auth'],
     'prefix' => 'ecommerce',
     'namespace' => 'Stylers\Ecommerce\Controllers'
 ], function () {

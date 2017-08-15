@@ -21,18 +21,6 @@ class BasketController extends Controller
      */
     public function show($id)
     {
-        $basket = Basket::getBaseBasketEloquent()
-            ->with([
-                'basketProducts.product' => function($query) {
-                    $query->select(['id', 'price', 'name_description_id', 'type_taxonomy_id']);
-                },
-                'basketProducts.product.name' => function($query) {
-                    $query->select(['id', 'description']);
-                },
-                'basketProducts.product.type' => function($query) {
-                    $query->select(['id', 'name']);
-                },
-            ])->where('id',$id)->first();
-        return $basket;
+        return Basket::getBasketInfoById($id);
     }
 }

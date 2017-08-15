@@ -77,4 +77,18 @@ class Basket extends Model
 
         return $basket;
     }
+
+    public static function getBaseBasketEloquent() {
+        return Basket::with([
+            'user' => function($query) {
+                $query->select([
+                    'id', 'name', 'email', 'company', 'postal', 'country',
+                    'state', 'city', 'address1', 'address2'
+                ]);
+            },
+            'status' => function($query) {
+                $query->select(['id', 'name']);
+            }
+        ])->orderBy('updated_at', 'desc');
+    }
 }

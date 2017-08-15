@@ -1,7 +1,7 @@
 <?php
 
 Route::group([
-    'middleware' => [],
+    'middleware' => ['web'],
     'prefix' => 'ecommerce',
     'namespace' => 'Stylers\Ecommerce\Controllers'
 ], function () {
@@ -12,7 +12,7 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => ['auth'],
+    'middleware' => ['web','auth'],
     'prefix' => 'ecommerce',
     'namespace' => 'Stylers\Ecommerce\Controllers'
 ], function () {
@@ -23,3 +23,6 @@ Route::group([
     Route::any('paymentStatus', 'PaymentController@paymentStatus');
     Route::any('success', 'PaymentController@success')->name('ecommerce.success');
 });
+
+Route::get('ecommerce/baskets', 'Stylers\Ecommerce\Controllers\BasketController@index');
+Route::get('ecommerce/basket/{id}', 'Stylers\Ecommerce\Controllers\BasketController@show');

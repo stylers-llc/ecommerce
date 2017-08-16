@@ -24,7 +24,9 @@ Route::group([
     Route::any('success', 'PaymentController@success')->name('ecommerce.success');
 });
 
-Route::get('ecommerce/baskets', 'Stylers\Ecommerce\Controllers\BasketController@index');
-Route::get('ecommerce/basket/{id}', 'Stylers\Ecommerce\Controllers\BasketController@show');
-Route::get('ecommerce/baskets/user/{id}', 'Stylers\Ecommerce\Controllers\BasketController@userBaskets');
-Route::get('ecommerce/baskets/paid', 'Stylers\Ecommerce\Controllers\BasketController@paidBaskets');
+/** @Private routes
+ * Route::get('ecommerce/baskets', 'Stylers\Ecommerce\Controllers\BasketController@index');
+ * Route::get('ecommerce/basket/{id}', 'Stylers\Ecommerce\Controllers\BasketController@show');
+ * Route::get('ecommerce/baskets/user/{id}', 'Stylers\Ecommerce\Controllers\BasketController@userBaskets');
+ * Route::get('ecommerce/baskets/paid', 'Stylers\Ecommerce\Controllers\BasketController@paidBaskets');
+ */

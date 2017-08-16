@@ -4,6 +4,7 @@ namespace Stylers\Ecommerce\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Config;
 use Stylers\Taxonomy\Models\Taxonomy;
 
 class Basket extends Model
@@ -78,8 +79,13 @@ class Basket extends Model
         return $basket;
     }
 
-    public static function getBaseBasketEloquent() {
-        return Basket::with([
+
+    public static function getPaidBaskets() {
+        return self::getBaseBasketEloquent(config('basket_statuses.paid'));
+    }
+
+    public static function getBaseBasketEloquent(int $statusId = null) {
+        $basket = Basket::with([
             'user' => function($query) {
                 $query->select([
                     'id', 'name', 'email', 'company', 'postal', 'country',
@@ -98,7 +104,15 @@ class Basket extends Model
             'basketProducts.product.type' => function($query) {
                 $query->select(['id', 'name']);
             }
-        ])->orderBy('updated_at', 'desc');
+        ]);
+
+        if($statusId) {
+            $basket->where('basket_status_tx_id', $statusId);
+        }
+
+        $basket->orderBy('updated_at', 'desc');
+
+        return $basket;
     }
 
     public static function getBasketInfoById(int $id) {

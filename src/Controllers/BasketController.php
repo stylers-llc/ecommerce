@@ -34,4 +34,9 @@ class BasketController extends Controller
     {
         return Basket::getBasketsInfoByUserId($userId);
     }
+
+    public function paidBaskets() {
+        return Basket::getPaidBaskets()
+            ->paginate();
+    }
 }

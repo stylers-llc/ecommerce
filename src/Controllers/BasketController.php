@@ -23,4 +23,15 @@ class BasketController extends Controller
     {
         return Basket::getBasketInfoById($id);
     }
+
+    /**
+     * Display user's baskets
+     *
+     * @param  int  $userId
+     * @return \Illuminate\Http\Response
+     */
+    public function userBaskets($userId)
+    {
+        return Basket::getBasketsInfoByUserId($userId);
+    }
 }

@@ -81,7 +81,7 @@ class Basket extends Model
 
 
     public static function getPaidBaskets() {
-        return self::getBaseBasketEloquent(config('basket_statuses.paid'));
+        return self::getBaseBasketEloquent((int) config('ecommerce.basket_statuses.paid'));
     }
 
     public static function getBaseBasketEloquent(int $statusId = null) {

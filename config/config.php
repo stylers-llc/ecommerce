@@ -14,7 +14,7 @@ return [
     'basket_statuses' => [
         'created' => 506,
         'paid' => 507,
-        'reserved' => 508,
+        'done' => 508,
         'canceled' => 509,
     ],
     'transaction_pay_status' => 510,

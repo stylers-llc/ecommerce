@@ -88,6 +88,15 @@ class Basket extends Model
             },
             'status' => function($query) {
                 $query->select(['id', 'name']);
+            },
+            'basketProducts.product' => function($query) {
+                $query->select(['id', 'price', 'name_description_id', 'type_taxonomy_id']);
+            },
+            'basketProducts.product.name' => function($query) {
+                $query->select(['id', 'description']);
+            },
+            'basketProducts.product.type' => function($query) {
+                $query->select(['id', 'name']);
             }
         ])->orderBy('updated_at', 'desc');
     }

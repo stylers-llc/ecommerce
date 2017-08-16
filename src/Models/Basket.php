@@ -160,4 +160,11 @@ class Basket extends Model
             }
         ])->where('user_id',$userId)->get();
     }
+
+    public static function changeBasketStatus(int $basketId, int $statusId) {
+        $tx = Taxonomy::getTaxonomyById($statusId, config("ecommerce.basket_status"));
+        $basket = self::findOrFail($basketId);
+        $basket->basket_status_tx_id = $tx->id;
+        return $basket->save();
+    }
 }

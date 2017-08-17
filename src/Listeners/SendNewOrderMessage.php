@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Config;
 use Stylers\Ecommerce\Events\PaymentSuccessEvent;
 use Mail;
 
-class SendSuccessMessage
+class SendNewOrderMessage
 {
     /**
      * Create the event listener.
@@ -26,10 +26,10 @@ class SendSuccessMessage
      */
     public function handle(PaymentSuccessEvent $event)
     {
-        Mail::send('successMail', ['basketInfo' => $event->basketInfo], function($message) use ($event) {
+        Mail::send('newOrderMail', ['basketInfo' => $event->basketInfo], function($message) use ($event) {
             $message->from(config('ecommerce.email_from'));
-            $message->to($event->basket->user->email);
-            $message->subject('Payment Success');
+            $message->to(config('ecommerce.email_from'));
+            $message->subject('New Order Arrived');
         });
     }
 }

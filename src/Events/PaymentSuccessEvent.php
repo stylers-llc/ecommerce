@@ -11,6 +11,7 @@ class PaymentSuccessEvent extends Event
     use SerializesModels;
 
     public $basket;
+    public $basketInfo;
     /**
      * Create a new event instance.
      *
@@ -19,5 +20,7 @@ class PaymentSuccessEvent extends Event
     public function __construct(Basket $basket)
     {
         $this->basket = $basket;
+        $this->basketInfo = Basket::getBasketInfoById($basket->id);
+        print($this->basketInfo);
     }
 }

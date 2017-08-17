@@ -1,6 +1,14 @@
 <?php
 
 return [
+    'default_currency' => 'CAD',
+    'email_from' => 'example@dot.com',
+    'invoice_from' => [
+        'company_name' => 'company_name',
+        'address_line_1'   => 'address_line_1',
+        'address_line_2'   => 'address_line_2',
+        'phone' => 'phone'
+    ],
     'product_type' => 500,
     'product_types' => [
         'equipment' => 501,
@@ -23,8 +31,6 @@ return [
         'paid' => 512,
         'canceled' => 513
     ],
-    'default_currency' => 'CAD',
-    'email_from' => 'example@dot.com',
     'paypal' => [
         'client_id' => 'client',
         'secret' => 'secret',

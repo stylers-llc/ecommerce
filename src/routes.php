@@ -30,3 +30,7 @@ Route::group([
  * Route::get('ecommerce/baskets/user/{id}', 'Stylers\Ecommerce\Controllers\BasketController@userBaskets');
  * Route::get('ecommerce/baskets/paid', 'Stylers\Ecommerce\Controllers\BasketController@paidBaskets');
  */
+
+/** @Test routes
+ * Route::get('test/sendmail', 'Stylers\Ecommerce\Controllers\BasketController@testSendMail');
+ */

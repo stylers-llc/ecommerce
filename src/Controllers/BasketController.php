@@ -4,6 +4,7 @@ namespace Stylers\Ecommerce\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Stylers\Ecommerce\Events\PaymentSuccessEvent;
 use \Stylers\Ecommerce\Models\Basket;
 
 class BasketController extends Controller
@@ -38,5 +39,9 @@ class BasketController extends Controller
     public function paidBaskets() {
         return Basket::getPaidBaskets()
             ->paginate();
+    }
+
+    public function testSendMail() {
+        \Event::fire(new PaymentSuccessEvent(Basket::find(1)));
     }
 }

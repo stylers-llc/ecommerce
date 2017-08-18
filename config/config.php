@@ -12,6 +12,7 @@ return [
     'product_type' => 500,
     'product_types' => [
         'equipment' => 501,
+        'course' => 514
     ],
     'product_description_type' => 502,
     'product_description_types' => [

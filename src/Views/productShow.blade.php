@@ -12,7 +12,7 @@
         @if (Auth::check() == true && $product['price'])
             <p>
                 <h4>Price: {{$product['price']}}</h4>
-                <button class="btn btn-primary btn-sm add-to-cart" data-product-id="{{$product['id']}}"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+                <button class="btn btn-primary btn-sm add-to-cart" data-product-id="{{$product['id']}}" data-is-singleton="{{$product['is_singleton']}}"><span class="glyphicon glyphicon-shopping-cart"></span></button>
             </p>
         @endif
         @if(!empty($product['descriptions']['long_description']))

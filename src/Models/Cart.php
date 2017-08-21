@@ -42,11 +42,15 @@ class Cart
 
     public static function add(int $productId)
     {
+        $product = Product::findOrFail($productId);
         $cart = \Session::get('cart');
         if(array_key_exists($productId, (array) $cart)) {
-            $cart[$productId] = $cart[$productId] + 1;
+            if($product->is_singleton) {
+                $cart[$productId] = 1;
+            } else {
+                $cart[$productId] = $cart[$productId] + 1;
+            }
         } else {
-            Product::findOrFail($productId);
             if(is_null($cart)) {
                 $cart = [];
             }

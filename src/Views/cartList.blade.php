@@ -12,7 +12,11 @@
     @foreach ($cartList["products"] as $id => $product)
         <div class="form-group">
             <label for="{{ $id }}">{{ $product['name']['en'] }}</label>
-            <input type="number" class="form-control productNumber" id="{{ $id }}" name="{{ $id }}" value="{{ $cartList['cart'][$id] }}" min="0" />
+            <input type="number" class="form-control productNumber" id="{{ $id }}" name="{{ $id }}" value="{{ $cartList['cart'][$id] }}" min="0"
+                @if($product['is_singleton'])
+                    max="1"
+                @endif
+                />
             <span class="help-block">Price: {{ $product['price'] }}</span>
         </div>
     @endforeach

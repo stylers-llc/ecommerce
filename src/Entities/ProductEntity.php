@@ -24,7 +24,8 @@ class ProductEntity
             'product_type' => $this->product->type->name,
             'name' => $this->getDescriptionWithTranslationsData($this->product->name),
             'descriptions' => $this->getProductDescriptionsData($this->product->id),
-            'price' => $this->product->price
+            'price' => $this->product->price,
+            'is_singleton' => $this->product->is_singleton
         ];
 
         return $return;

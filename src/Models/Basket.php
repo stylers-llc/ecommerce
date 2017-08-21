@@ -68,6 +68,10 @@ class Basket extends Model
 
         foreach($cart as $productId => $productNumber) {
             $product = Product::findOrFail($productId);
+            if($product->is_singleton && $productNumber > 1) {
+                $productNumber = 1;
+            }
+
             $basketProduct = new BasketProduct();
             $basketProduct->product_id = $product->id;
             $basketProduct->price = $product->price;

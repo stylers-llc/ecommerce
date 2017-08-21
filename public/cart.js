@@ -8,7 +8,13 @@ const cart = (($) => {
         $.ajax({
             url: "/ecommerce/cart/add/" + productId,
             success: (data) => {
-                target.prop('disabled', false);
+                if(target.data("is-singleton")) {
+                    target.removeClass('btn-primary');
+                    target.addClass('btn-success');
+                } else {
+                    target.prop('disabled', false);
+                }
+
                 showAlert(data.msg, "alert-success");
             },
             error: (result) => {

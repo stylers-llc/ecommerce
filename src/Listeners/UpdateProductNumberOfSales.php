@@ -2,11 +2,9 @@
 
 namespace Stylers\Ecommerce\Listeners;
 
-use Illuminate\Support\Facades\Config;
 use Stylers\Ecommerce\Events\PaymentSuccessEvent;
-use Mail;
 
-class SendSuccessMessage
+class UpdateProductNumberOfSales
 {
     /**
      * Create the event listener.
@@ -26,10 +24,10 @@ class SendSuccessMessage
      */
     public function handle(PaymentSuccessEvent $event)
     {
-        Mail::send('successMail', ['basketInfo' => $event->basketInfo], function($message) use ($event) {
-            $message->from(config('ecommerce.email_from'));
-            $message->to($event->basket->user->email);
-            $message->subject('Payment Success');
-        });
+        foreach ($event->basket->basketProducts as $basketProduct) {
+            $product = $basketProduct->product;
+            $product->number_of_sales = $product->number_of_sales + $basketProduct->qty;
+            $product->save();
+        }
     }
 }

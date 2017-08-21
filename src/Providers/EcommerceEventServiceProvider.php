@@ -18,5 +18,6 @@ class EcommerceEventServiceProvider extends EventServiceProvider
 
         $events->listen(\Stylers\Ecommerce\Events\PaymentSuccessEvent::class, \Stylers\Ecommerce\Listeners\SendSuccessMessage::class);
         $events->listen(\Stylers\Ecommerce\Events\PaymentSuccessEvent::class, \Stylers\Ecommerce\Listeners\SendNewOrderMessage::class);
+        $events->listen(\Stylers\Ecommerce\Events\PaymentSuccessEvent::class, \Stylers\Ecommerce\Listeners\UpdateProductNumberOfSales::class);
     }
 }

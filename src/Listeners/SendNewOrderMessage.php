@@ -21,7 +21,7 @@ class SendNewOrderMessage
     /**
      * Handle the event.
      *
-     * @param  SellerAcceptBid  $event
+     * @param  PaymentSuccessEvent  $event
      * @return void
      */
     public function handle(PaymentSuccessEvent $event)

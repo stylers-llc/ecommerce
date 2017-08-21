@@ -18,6 +18,8 @@ class CreateProductsTable extends Migration
             $table->integer('type_taxonomy_id')->unsigned();
             $table->boolean('is_active')->default(0);
             $table->double('price', 9, 2)->nullable();
+            $table->unsignedInteger('number_of_sales')->default(0);
+            $table->boolean('is_singleton')->default(0);
             $table->timestamps();
             $table->softDeletes();
 

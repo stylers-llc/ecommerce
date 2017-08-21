@@ -7,8 +7,13 @@ Route::group([
 ], function () {
     Route::get('products', 'ProductController@index');
     Route::get('products/list', 'ProductController@productList');
+
+    Route::get('products/{type}', 'ProductController@index');
+    Route::get('products/list/{type}', 'ProductController@productList');
+
     Route::get('product/{id}', 'ProductController@show');
     Route::get('product/show/{id}', 'ProductController@productShow');
+    Route::get('product/top/{type}', 'ProductController@top');
 });
 
 Route::group([

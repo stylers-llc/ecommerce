@@ -26,7 +26,10 @@ class SendNewOrderMessage
      */
     public function handle(PaymentSuccessEvent $event)
     {
-        Mail::send('newOrderMail', ['basketInfo' => $event->basketInfo], function($message) use ($event) {
+        Mail::send('newOrderMail', [
+            'basket' => $event->basket,
+            'basketInfo' => $event->basketInfo
+        ], function($message) use ($event) {
             $message->from(config('ecommerce.email_from'));
             $message->to(config('ecommerce.email_from'));
             $message->subject('New Order Arrived');

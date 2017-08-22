@@ -21,6 +21,7 @@ class Product extends Model
         'price',
         'number_of_sales',
         'is_singleton',
+        'stock',
         'created_at',
         'updated_at',
         'deleted_at'

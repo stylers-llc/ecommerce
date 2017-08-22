@@ -27,6 +27,9 @@ class UpdateProductNumberOfSales
         foreach ($event->basket->basketProducts as $basketProduct) {
             $product = $basketProduct->product;
             $product->number_of_sales = $product->number_of_sales + $basketProduct->qty;
+            if(!is_null($product->stock)) {
+                $product->stock = $product->stock - $basketProduct->qty;
+            }
             $product->save();
         }
     }

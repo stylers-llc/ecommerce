@@ -28,6 +28,10 @@ class ProductEntity
             'is_singleton' => $this->product->is_singleton
         ];
 
+        if(in_array('stock', $additions)) {
+            $return['stock'] = $this->product->stock;
+        }
+
         return $return;
     }
 

@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->double('price', 9, 2)->nullable();
             $table->unsignedInteger('number_of_sales')->default(0);
             $table->boolean('is_singleton')->default(0);
+            $table->integer('stock')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

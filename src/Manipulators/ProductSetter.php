@@ -57,6 +57,11 @@ class ProductSetter extends Setter
         $this->product->name_description_id = $nameDescription->id;
         $this->product->price = (!empty($this->attributes['price'])) ? $this->attributes['price'] : null;
         $this->product->is_singleton = (!empty($this->attributes['is_singleton'])) ? $this->attributes['is_singleton'] : false;
+
+        if(!empty($this->attributes['stock']) && is_int($this->attributes['stock'])) {
+            $this->product->stock = $this->attributes['stock'];
+        }
+
         $this->product->saveOrFail();
 
         if(!empty($this->attributes['descriptions']['short_description'])) {

@@ -15,9 +15,8 @@ class EcommerceEventServiceProvider extends EventServiceProvider
     public function boot(DispatcherContract $events)
     {
         parent::boot($events);
-
+        $events->listen(\Stylers\Ecommerce\Events\PaymentSuccessEvent::class, \Stylers\Ecommerce\Listeners\UpdateProductNumberOfSales::class);
         $events->listen(\Stylers\Ecommerce\Events\PaymentSuccessEvent::class, \Stylers\Ecommerce\Listeners\SendSuccessMessage::class);
         $events->listen(\Stylers\Ecommerce\Events\PaymentSuccessEvent::class, \Stylers\Ecommerce\Listeners\SendNewOrderMessage::class);
-        $events->listen(\Stylers\Ecommerce\Events\PaymentSuccessEvent::class, \Stylers\Ecommerce\Listeners\UpdateProductNumberOfSales::class);
     }
 }

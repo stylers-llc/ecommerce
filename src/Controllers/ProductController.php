@@ -50,6 +50,15 @@ class ProductController extends Controller
     public function top(Request $request, $type = null) {
         return ['success' => true, 'data' => ProductEntity::getCollection(Product::getTop(5, $type))];
     }
+
+    public function update(Request $request, $id = null) {
+        $product = null;
+        if($id) {
+            $product = Product::find($id);
+        }
+
+        return View::make('updateProduct', ['product' => $product]);
+    }
 }
 
 

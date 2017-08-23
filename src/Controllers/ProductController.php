@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
 use Stylers\Ecommerce\Entities\ProductEntity;
+use Stylers\Ecommerce\Manipulators\ProductSetter;
 use Stylers\Ecommerce\Models\Product;
+use Stylers\Taxonomy\Models\Language;
 use Stylers\Taxonomy\Models\Taxonomy;
 
 class ProductController extends Controller
@@ -53,12 +55,28 @@ class ProductController extends Controller
 
     public function update(Request $request, $id = null) {
         $product = null;
-        if($id) {
-            $product = Product::find($id);
+        $isUpdate = false;
+
+        $input = $request->all();
+        if(!empty($input)) {
+            $newProduct = (new ProductSetter($input))->set();
+            if($newProduct) {
+                $product = (new ProductEntity($newProduct))->getFrontendData(['stock']);
+                $isUpdate = true;
+            }
+        } else if($id) {
+            $product = (new ProductEntity(Product::findOrFail($id)))->getFrontendData(['stock']);
+            $isUpdate = true;
         }
 
-        return View::make('updateProduct', ['product' => $product]);
+        return View::make('updateProduct', [
+            'productEntity' => $product,
+            'isUpdate' => $isUpdate,
+            'productTypes' => Taxonomy::find(config('ecommerce.product_type'))->getLeaves(),
+            'languages' => array_keys(Language::getLanguageCodes())
+        ]);
     }
+
 }
 
 

@@ -1,9 +1,121 @@
 @extends('master')
 
-@section('title', "Create Product")
+@section('title', ($isUpdate) ? 'Edit product' : 'Create product')
 
 @section('content')
-<form method="POST">
-
+<form method="POST" class="form-horizontal">
+    <div class="form-group">
+        @if($isUpdate)
+            <input type="hidden" name="id" value="{{ $productEntity['id'] }}" />
+        @endif
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="is_active" {!! (!empty($productEntity['is_active']) && $productEntity['is_active'] == true) ? 'checked' : '' !!} /> Is active
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="is_singleton" {!! (!empty($productEntity['is_singleton']) && $productEntity['is_singleton'] == true) ? 'checked' : '' !!} /> Is singleton
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="product_type" class="col-sm-2 control-label">Product type</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="product_type">
+                    @foreach($productTypes as $productType)
+                        <option value="{{$productType->name}}" {!! (!empty($productEntity['product_type']) && ($productEntity['product_type'] == $productType->name)) ? 'selected' : '' !!}>
+                            {{$productType->name}}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="price" class="col-sm-2 control-label">Price</label>
+            <div class="col-sm-10">
+                <input
+                        type="number"
+                        id="price"
+                        name="price"
+                        class="form-control"
+                        value="{!! (!empty($productEntity['price'])) ? $productEntity['price'] : null; !!}"
+                        min="0"
+                        step="0.01"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="stock" class="col-sm-2 control-label">Stock</label>
+            <div class="col-sm-10">
+                <input
+                        type="number"
+                        id="stock"
+                        name="stock"
+                        class="form-control"
+                        value="{!! (!empty($productEntity['stock'])) ? $productEntity['stock'] : null; !!}"
+                />
+            </div>
+        </div>
+        &nbsp;
+        <ul class="nav nav-tabs">
+            @for ($i = 0; $i < count($languages); $i++)
+                <li role="presentation" {!! ($i == 0) ? 'class="active"' : '' !!}>
+                    <a data-toggle="tab" href="#{{$languages[$i]}}">{{$languages[$i]}}</a>
+                </li>
+            @endfor
+        </ul>
+        <div class="tab-content">
+            &nbsp;
+            @for ($i = 0; $i < count($languages); $i++)
+                <div id="home" class="tab-pane fade {!! ($i == 0) ? 'in active' : '' !!}">
+                    <div class="form-group">
+                        <label for="name[{{$languages[$i]}}]" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input
+                                type="text"
+                                id="name[{{$languages[$i]}}]"
+                                name="name[{{$languages[$i]}}]"
+                                class="form-control"
+                                value="{!! (!empty($productEntity['name'][$languages[$i]])) ? $productEntity['name'][$languages[$i]] : null; !!}"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="descriptions[short_description][{{$languages[$i]}}]" class="col-sm-2 control-label">Short description</label>
+                        <div class="col-sm-10">
+                            <input
+                                    type="text"
+                                    id="descriptions[short_description][{{$languages[$i]}}]"
+                                    name="descriptions[short_description][{{$languages[$i]}}]"
+                                    class="form-control"
+                                    value="{!! (!empty($productEntity['descriptions']['short_description'][$languages[$i]])) ? $productEntity['descriptions']['short_description'][$languages[$i]] : null; !!}"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="descriptions[long_description][{{$languages[$i]}}]" class="col-sm-2 control-label">Long description</label>
+                        <div class="col-sm-10">
+                            <textarea
+                                type="text"
+                                id="descriptions[long_description][{{$languages[$i]}}]"
+                                name="descriptions[long_description][{{$languages[$i]}}]"
+                                class="form-control"
+                                rows="5"
+                            >{!! (!empty($productEntity['descriptions']['long_description'][$languages[$i]])) ? $productEntity['descriptions']['long_description'][$languages[$i]] : null; !!}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn-primary btn btn-sm">
+                            @if($isUpdate)
+                                Edit
+                            @else
+                                Create
+                            @endif
+                        </button>
+                    </div>
+                </div>
+            @endfor
+        </div>
+    </div>
 </form>
 @endsection

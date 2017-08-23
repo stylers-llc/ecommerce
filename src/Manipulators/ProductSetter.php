@@ -50,15 +50,23 @@ class ProductSetter extends Setter
 
     public function set()
     {
-        $nameDescription = (new DescriptionSetter($this->attributes['name']))->set();
-        $this->product = new Product();
-        $this->product->is_active = $this->attributes['is_active'];
-        $this->product->type_taxonomy_id = $this->attributes['type_taxonomy_id'];
-        $this->product->name_description_id = $nameDescription->id;
-        $this->product->price = (!empty($this->attributes['price'])) ? $this->attributes['price'] : null;
-        $this->product->is_singleton = (!empty($this->attributes['is_singleton'])) ? $this->attributes['is_singleton'] : false;
+        if(!empty($this->attributes['id'])) {
+            $this->product = Product::findOrFail($this->attributes['id']);
+            (new DescriptionSetter($this->attributes['name'], $this->product->name_description_id))->set();
+        } else {
+            $nameDescription = (new DescriptionSetter($this->attributes['name']))->set();
+            $this->product = new Product();
+            $this->product->name_description_id = $nameDescription->id;
+        }
 
-        if(!empty($this->attributes['stock']) && is_int($this->attributes['stock'])) {
+        $this->product->is_active = (bool) $this->attributes['is_active'];
+        $this->product->type_taxonomy_id = $this->attributes['type_taxonomy_id'];
+        $this->product->price = (!empty($this->attributes['price'])) ? $this->attributes['price'] : null;
+        $this->product->is_singleton = (!empty($this->attributes['is_singleton'])) ? (bool) $this->attributes['is_singleton'] : false;
+
+        if(empty($this->attributes['stock'])) {
+            $this->product->stock = null;
+        } else if (!empty($this->attributes['stock']) && filter_var($this->attributes['stock'], FILTER_VALIDATE_INT)){
             $this->product->stock = $this->attributes['stock'];
         }
 

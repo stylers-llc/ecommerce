@@ -25,7 +25,7 @@ class ProductEntity
             'name' => $this->getDescriptionWithTranslationsData($this->product->name),
             'descriptions' => $this->getProductDescriptionsData($this->product->id),
             'price' => $this->product->price,
-            'is_singleton' => $this->product->is_singleton
+            'is_singleton' => (bool) $this->product->is_singleton
         ];
 
         if(in_array('stock', $additions)) {

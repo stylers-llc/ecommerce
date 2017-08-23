@@ -5,6 +5,10 @@ Route::group([
     'prefix' => 'ecommerce',
     'namespace' => 'Stylers\Ecommerce\Controllers'
 ], function () {
+    Route::any('product/update/{id}', 'ProductController@update');
+    Route::any('product/update', 'ProductController@update');
+
+
     Route::get('products', 'ProductController@index');
     Route::get('products/list', 'ProductController@productList');
 
@@ -14,6 +18,8 @@ Route::group([
     Route::get('product/{id}', 'ProductController@show');
     Route::get('product/show/{id}', 'ProductController@productShow');
     Route::get('product/top/{type}', 'ProductController@top');
+
+
 });
 
 Route::group([
@@ -35,8 +41,13 @@ Route::group([
  * Route::get('ecommerce/baskets/user/{id}', 'Stylers\Ecommerce\Controllers\BasketController@userBaskets');
  * Route::get('ecommerce/baskets/paid', 'Stylers\Ecommerce\Controllers\BasketController@paidBaskets');
  */
-
-Route::get('ecommerce/product/update', 'Stylers\Ecommerce\Controllers\ProductController@update');
+/*
+Route::group([
+    'middleware' => ['web'],
+], function () {
+    Route::get('ecommerce/product/update', 'Stylers\Ecommerce\Controllers\ProductController@update');
+});
+*/
 // Route::get('ecommerce/product/update/{id}', 'Stylers\Ecommerce\Controllers\ProductController@update');
 
 /** @Test routes

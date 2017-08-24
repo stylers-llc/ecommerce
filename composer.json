@@ -9,6 +9,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/stylers-llc/taxonomy"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/stylers-llc/media.git"
         }
     ],
     "authors": [
@@ -23,7 +27,8 @@
         "laravel/framework": "5.*",
         "stylers/taxonomy": "1.*",
         "paypal/rest-api-sdk-php": "*",
-        "guzzlehttp/guzzle": "~6"
+        "guzzlehttp/guzzle": "~6",
+        "stylers/media": "0.*"
     },
     "autoload": {
         "psr-4": {

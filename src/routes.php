@@ -5,8 +5,9 @@ Route::group([
     'prefix' => 'ecommerce',
     'namespace' => 'Stylers\Ecommerce\Controllers'
 ], function () {
-    Route::any('product/update/{id}', 'ProductController@update');
+    Route::any('product/update/{id}', ['as'=> 'product.update', 'uses' => 'ProductController@update']);
     Route::any('product/update', 'ProductController@update');
+    Route::post('product/image/upload','ProductController@imageUpload');
 
 
     Route::get('products', 'ProductController@index');

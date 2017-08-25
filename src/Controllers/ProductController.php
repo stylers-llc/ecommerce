@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\View;
 use Stylers\Ecommerce\Entities\ProductEntity;
 use Stylers\Ecommerce\Manipulators\ProductSetter;
 use Stylers\Ecommerce\Models\Product;
+use Stylers\Media\Manipulators\FileSetter;
+use Stylers\Media\Models\Gallery;
+use Stylers\Media\Models\GalleryItem;
 use Stylers\Taxonomy\Models\Language;
 use Stylers\Taxonomy\Models\Taxonomy;
 
@@ -58,7 +61,7 @@ class ProductController extends Controller
         $isUpdate = false;
 
         $input = $request->all();
-        if(!empty($input)) {
+        if($request->isMethod('post') && !empty($input)) {
             $newProduct = (new ProductSetter($input))->set();
             if($newProduct) {
                 $product = (new ProductEntity($newProduct))->getFrontendData(['stock']);
@@ -75,6 +78,26 @@ class ProductController extends Controller
             'productTypes' => Taxonomy::find(config('ecommerce.product_type'))->getLeaves(),
             'languages' => array_keys(Language::getLanguageCodes())
         ]);
+    }
+
+    public function imageUpload(Request $request) {
+
+        $gallery = Gallery::firstOrCreate([
+            'galleryable_type' => Product::class,
+            'galleryable_id' => $request->id,
+            'role_taxonomy_id' => config('media.gallery_roles.frontend_gallery')
+        ]);
+
+        if($request->hasFile('file')) {
+            $file = (new FileSetter($request->toArray()))->setBySymfonyFile($request->file('file'));
+
+            $galleryItem = new GalleryItem();
+            $galleryItem->file_id = $file->id;
+            $galleryItem->gallery_id = $gallery->id;
+            $galleryItem->saveOrFail();
+        }
+
+        return \Redirect::route('product.update', $request->id);
     }
 
 }

@@ -4,6 +4,8 @@ namespace Stylers\Ecommerce\Entities;
 
 
 use Stylers\Ecommerce\Models\Product;
+use Stylers\Media\Models\Gallery;
+use Stylers\Media\Entities\GalleryEntity;
 use Stylers\Ecommerce\Models\ProductDescription;
 use Stylers\Taxonomy\Entities\DescriptionEntity;
 use Stylers\Taxonomy\Models\Description;
@@ -32,6 +34,8 @@ class ProductEntity
             $return['stock'] = $this->product->stock;
         }
 
+        $return['gallery'] = $this->getGallery();
+
         return $return;
     }
 
@@ -49,6 +53,19 @@ class ProductEntity
         return $descriptions;
     }
 
+    protected function getGallery() {
+        $gallery = Gallery::where('galleryable_type', Product::class)
+            ->where('galleryable_id', $this->product->id)
+            ->where('role_taxonomy_id', config('media.gallery_roles.frontend_gallery'))
+            ->first();
+
+        if($gallery) {
+            return (new GalleryEntity($gallery))->getFrontendData();
+        }
+
+        return [];
+    }
+
     public static function getCollection($products, array $additions = [])
     {
         $return = [];
@@ -57,4 +74,5 @@ class ProductEntity
         }
         return $return;
     }
+
 }

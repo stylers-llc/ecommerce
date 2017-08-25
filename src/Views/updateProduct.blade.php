@@ -67,7 +67,7 @@
         <div class="tab-content">
             &nbsp;
             @for ($i = 0; $i < count($languages); $i++)
-                <div id="home" class="tab-pane fade {!! ($i == 0) ? 'in active' : '' !!}">
+                <div id="{{$languages[$i]}}" class="tab-pane fade {!! ($i == 0) ? 'in active' : '' !!}">
                     <div class="form-group">
                         <label for="name[{{$languages[$i]}}]" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-10">
@@ -118,4 +118,39 @@
         </div>
     </div>
 </form>
+    @if($isUpdate)
+        <hr/>
+        <form method="post" enctype="multipart/form-data" class="form-horizontal" action="{{ action('\Stylers\Ecommerce\Controllers\ProductController@imageUpload') }}">
+            <input type="hidden" name="id" value="{{ $productEntity['id'] }}" />
+            <ul class="nav nav-tabs">
+                @for ($i = 0; $i < count($languages); $i++)
+                    <li role="presentation" {!! ($i == 0) ? 'class="active"' : '' !!}>
+                        <a data-toggle="tab" href="#imageDesc{{$languages[$i]}}">{{$languages[$i]}}</a>
+                    </li>
+                @endfor
+            </ul>
+            <div class="tab-content">
+                &nbsp;
+                @for ($i = 0; $i < count($languages); $i++)
+                    <div id="#imageDesc{{$languages[$i]}}" class="tab-pane fade {!! ($i == 0) ? 'in active' : '' !!}">
+                        <div class="form-group">
+                            <label for="description[{{$languages[$i]}}]" class="col-sm-2 control-label">Description</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="description[{{$languages[$i]}}]" name="description[{{$languages[$i]}}]" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                @endfor
+            </div>
+            <div class="form-group">
+                <label for="file" class="col-sm-2 control-label">Upload image</label>
+                <div class="col-sm-10">
+                    <input type="file" id="file" name="file" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn-primary btn btn-sm">Upload</button>
+            </div>
+        </form>
+    @endif
 @endsection

@@ -18,7 +18,7 @@ Route::group([
 
     Route::get('product/{id}', 'ProductController@show');
     Route::get('product/show/{id}', 'ProductController@productShow');
-    Route::get('product/top/{type}', 'ProductController@top');
+    Route::get('product/top/{type}/{number}', 'ProductController@top');
 
 
 });

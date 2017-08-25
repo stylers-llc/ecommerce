@@ -52,8 +52,8 @@ class ProductController extends Controller
         return View::make('productShow', ['product' => $productData['data']]);
     }
 
-    public function top(Request $request, $type = null) {
-        return ['success' => true, 'data' => ProductEntity::getCollection(Product::getTop(5, $type))];
+    public function top(Request $request, $type = null, int $number = 4) {
+        return ['success' => true, 'data' => ProductEntity::getCollection(Product::getTop((int) $number, $type))];
     }
 
     public function update(Request $request, $id = null) {

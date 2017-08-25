@@ -153,4 +153,18 @@
             </div>
         </form>
     @endif
+    @if (!empty($productEntity['gallery']['items']))
+        <div class="row">
+        @foreach($productEntity['gallery']['items'] as $image)
+                <div class="col-xs-6 col-md-3 thumbnail">
+                    <picture>
+                        @foreach($image['thumbnails'] as $thumbnail)
+                            <source media="(min-width: {{$thumbnail['width']}})" srcset="/{{$thumbnail['path']}}">
+                        @endforeach
+                        <img src="/{{$image['path']}}" alt="{{$image['description']['en']}}" style="width:auto;">
+                    </picture>
+                </div>
+        @endforeach
+        </div>
+    @endif
 @endsection

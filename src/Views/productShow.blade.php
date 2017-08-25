@@ -5,6 +5,16 @@
 @section('content')
 <div class="row">
     <div class="col-sm-12 col-md-12">
+        @if (!empty($product['gallery']['items']))
+            <div class="thumbnail">
+                <picture>
+                    @foreach($product['gallery']['items'][0]['thumbnails'] as $thumbnail)
+                        <source media="(min-width: {{$thumbnail['width']}})" srcset="/{{$thumbnail['path']}}">
+                    @endforeach
+                    <img src="/{{$product['gallery']['items'][0]['path']}}" alt="{{$product['gallery']['items'][0]['description']['en']}}" style="width:auto;">
+                </picture>
+            </div>
+        @endif
         <h1>{{$product['name']['en']}}</h1>
         @if(!empty($product['descriptions']['short_description']))
         <p>{{$product['descriptions']['short_description']['en']}}</p>

@@ -5,8 +5,10 @@ namespace Stylers\Ecommerce\Manipulators;
 
 use Illuminate\Support\Facades\Config;
 use Stylers\Ecommerce\Models\Product;
+use Stylers\Ecommerce\Models\ProductClassification;
 use Stylers\Ecommerce\Models\ProductDescription;
 use Stylers\Taxonomy\Manipulators\DescriptionSetter;
+use Stylers\Taxonomy\Models\Taxonomy;
 
 class ProductSetter extends Setter
 {
@@ -72,6 +74,17 @@ class ProductSetter extends Setter
 
         $this->product->saveOrFail();
 
+        if(!empty($this->attributes['category'])) {
+            $tx = Taxonomy::getOrCreateTaxonomy($this->attributes['category'], \Config::get('ecommerce.category'));
+            (new ProductClassification())
+                ->insertOrUpdateClassification(
+                    'product_id',
+                    $this->product->id,
+                    \Config::get('ecommerce.category'),
+                    $this->attributes['category']
+                );
+        }
+
         if(!empty($this->attributes['descriptions']['short_description'])) {
             (new ProductDescription())->setDescription(
                 self::CONNECTION_COLUMN,
@@ -92,4 +105,6 @@ class ProductSetter extends Setter
 
         return $this->product;
     }
+
+
 }

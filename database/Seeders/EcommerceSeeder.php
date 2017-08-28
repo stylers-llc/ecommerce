@@ -19,6 +19,7 @@ class EcommerceSeeder extends Seeder
         $this->seedProductDescriptions();
         $this->seedBasketStatuses();
         $this->seedTransactionStatuses();
+        $this->seedCategories();
     }
 
     protected function seedProductTypes() {
@@ -66,6 +67,19 @@ class EcommerceSeeder extends Seeder
         $parentTx->save();
 
         foreach (Config::get('ecommerce.transaction_pay_statuses') as $name => $id) {
+            $tx = Taxonomy::loadTaxonomy($id);
+            $tx->name = $name;
+            $tx->save();
+            $tx->makeChildOf($parentTx);
+        }
+    }
+
+    protected function seedCategories(){
+        $parentTx = Taxonomy::loadTaxonomy(Config::get('ecommerce.category'));
+        $parentTx->name = 'category';
+        $parentTx->save();
+
+        foreach (Config::get('ecommerce.categories') as $name => $id) {
             $tx = Taxonomy::loadTaxonomy($id);
             $tx->name = $name;
             $tx->save();

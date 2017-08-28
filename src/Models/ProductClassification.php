@@ -2,18 +2,18 @@
 
 namespace Stylers\Ecommerce\Models;
 
-
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Stylers\Taxonomy\Models\ClassificationTrait;
 use Stylers\Taxonomy\Models\Taxonomy;
 
-class ProductClassification
+class ProductClassification extends Model
 {
     use SoftDeletes,
         ClassificationTrait;
 
     protected $fillable = [
-        'product_id', 'parent_classification_id', 'taxonomy_id', 'value_taxonomy_id', 'priority', 'is_listable'
+        'product_id', 'taxonomy_id', 'value_taxonomy_id', 'priority', 'is_listable'
     ];
 
     public function product() {

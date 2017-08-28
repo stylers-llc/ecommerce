@@ -4,6 +4,7 @@ namespace Stylers\Ecommerce\Entities;
 
 
 use Stylers\Ecommerce\Models\Product;
+use Stylers\Ecommerce\Models\ProductClassification;
 use Stylers\Media\Models\Gallery;
 use Stylers\Media\Entities\GalleryEntity;
 use Stylers\Ecommerce\Models\ProductDescription;
@@ -27,7 +28,8 @@ class ProductEntity
             'name' => $this->getDescriptionWithTranslationsData($this->product->name),
             'descriptions' => $this->getProductDescriptionsData($this->product->id),
             'price' => $this->product->price,
-            'is_singleton' => (bool) $this->product->is_singleton
+            'is_singleton' => (bool) $this->product->is_singleton,
+            'properties' => (new ProductClassification())->getClassificationEntities('product_id', $this->product->id)
         ];
 
         if(in_array('stock', $additions)) {

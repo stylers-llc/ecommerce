@@ -32,6 +32,10 @@ return [
         'paid' => 512,
         'canceled' => 513
     ],
+    'category' => 515,
+    'categories' => [
+        'example category' => 516
+    ],
     'paypal' => [
         'client_id' => 'client',
         'secret' => 'secret',

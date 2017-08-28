@@ -76,7 +76,8 @@ class ProductController extends Controller
             'productEntity' => $product,
             'isUpdate' => $isUpdate,
             'productTypes' => Taxonomy::find(config('ecommerce.product_type'))->getLeaves(),
-            'languages' => array_keys(Language::getLanguageCodes())
+            'languages' => array_keys(Language::getLanguageCodes()),
+            'categories' => Taxonomy::find(config('ecommerce.category'))->getLeaves(),
         ]);
     }
 

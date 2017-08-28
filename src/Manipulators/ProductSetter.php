@@ -76,13 +76,14 @@ class ProductSetter extends Setter
 
         if(!empty($this->attributes['category'])) {
             $tx = Taxonomy::getOrCreateTaxonomy($this->attributes['category'], \Config::get('ecommerce.category'));
-            (new ProductClassification())
-                ->insertOrUpdateClassification(
-                    'product_id',
-                    $this->product->id,
-                    \Config::get('ecommerce.category'),
-                    $this->attributes['category']
-                );
+            ProductClassification::where('taxonomy_id', \Config::get('ecommerce.category'))->delete();
+            $pc = new ProductClassification();
+            $classification = $pc->insertOrUpdateClassification(
+                'product_id',
+                $this->product->id,
+                \Config::get('ecommerce.category'),
+                $this->attributes['category']
+            );
         }
 
         if(!empty($this->attributes['descriptions']['short_description'])) {

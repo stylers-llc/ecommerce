@@ -24,7 +24,6 @@ class ProductSetter extends Setter
     public static $rules = [
         'required' => [
             'product_type',
-            'is_active',
             'name'
         ],
         'rules' => [

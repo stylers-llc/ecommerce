@@ -59,18 +59,9 @@
         <div class="form-group">
             <label for="category" class="col-sm-2 control-label">Category</label>
             <div class="col-sm-10">
-                @php
-                    $selectedCategory = null;
-                    $countProperties = count($productEntity['properties']);
-                    for ($i = 0; $i < $countProperties; $i++) {
-                        if($productEntity['properties'][$i]['name'] == "category") {
-                            $selectedCategory = $productEntity['properties'][$i]['value'];
-                        }
-                    }
-                @endphp
                 <select class="form-control" name="category">
                     @foreach($categories as $category)
-                        <option value="{{$category->name}}" {!! ($category->name == $selectedCategory) ? 'selected' : '' !!}>
+                        <option value="{{$category->name}}" {!! ($category->name == $productEntity['category']) ? 'selected' : '' !!}>
                             {{$category->name}}
                         </option>
                     @endforeach

@@ -28,9 +28,11 @@ class ProductEntity
             'name' => $this->getDescriptionWithTranslationsData($this->product->name),
             'descriptions' => $this->getProductDescriptionsData($this->product->id),
             'price' => $this->product->price,
-            'is_singleton' => (bool) $this->product->is_singleton,
-            'properties' => (new ProductClassification())->getClassificationEntities('product_id', $this->product->id)
+            'is_singleton' => (bool) $this->product->is_singleton
         ];
+
+        $pc = ProductClassification::where('product_id',$this->product->id)->where('taxonomy_id',\Config::get('ecommerce.category'))->first();
+        $return['category'] = ($pc) ? $pc->valueTaxonomy->name : null;
 
         if(in_array('stock', $additions)) {
             $return['stock'] = $this->product->stock;

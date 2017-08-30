@@ -42,4 +42,14 @@ class CartController extends Controller
             'msg' => "Product removed from cart"
         ];
     }
+
+    public function change(Request $request, $id, $number = 0) {
+        Cart::change($id, $number);
+
+        return [
+            'success' => true,
+            'itemNumber' => Cart::getProductCount(),
+            'msg' => "Product removed from cart"
+        ];
+    }
 }

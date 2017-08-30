@@ -69,6 +69,17 @@ class Cart
         \Session::put('cart', $cart);
     }
 
+    public static function change(int $productId, int $number) {
+        if($number < 1) {
+            self::remove($productId);
+        } else {
+            $product = Product::findOrFail($productId);
+            $cart = \Session::get('cart');
+            $cart[$productId] = $number;
+            \Session::put('cart', $cart);
+        }
+    }
+
     public static function update(array $cartData)
     {
         $cart = [];

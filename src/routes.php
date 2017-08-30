@@ -32,6 +32,7 @@ Route::group([
     Route::any('cart/list', 'CartController@cartList')->name('ecommerce.cart.list');
     Route::get('cart/add/{id}', 'CartController@add');
     Route::get('cart/remove/{id}', 'CartController@remove');
+    Route::get('cart/change/{id}/{number}', 'CartController@change');
     Route::any('checkout', 'PaymentController@checkout');
     Route::any('paymentStatus', 'PaymentController@paymentStatus');
     Route::any('success', 'PaymentController@success')->name('ecommerce.success');

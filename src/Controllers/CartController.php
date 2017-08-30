@@ -38,7 +38,7 @@ class CartController extends Controller
 
         return [
             'success' => true,
-            'itemNumber' => Cart::getProductCount(),
+            'cartList' => Cart::get(),
             'msg' => "Product removed from cart"
         ];
     }
@@ -48,8 +48,8 @@ class CartController extends Controller
 
         return [
             'success' => true,
-            'itemNumber' => Cart::getProductCount(),
-            'msg' => "Product removed from cart"
+            'cartList' => Cart::get(),
+            'msg' => "Cart changed"
         ];
     }
 }

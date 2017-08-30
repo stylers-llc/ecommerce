@@ -10,7 +10,7 @@
         </div>
     @endif
     @foreach ($cartList["products"] as $id => $product)
-        <div class="form-group">
+        <div class="form-group product-list-item">
             <label for="{{ $id }}">{{ $product['name']['en'] }}</label>
             <input type="number" class="form-control productNumber" id="{{ $id }}" name="{{ $id }}" value="{{ $cartList['cart'][$id] }}" min="0"
                 @if($product['is_singleton'])
@@ -18,6 +18,7 @@
                 @endif
                 />
             <span class="help-block">Price: {{ $product['price'] }}</span>
+            <button type="button" class="remove-product-item btn btn-default">Remove</button>
         </div>
     @endforeach
     <div>
@@ -36,9 +37,9 @@
             let sum = 0;
             let productIds = Object.keys(cart);
             for(let i = 0; i < productIds.length; i++) {
-                sum += $('input.productNumber#'+productIds[i]).val() * cartList.products[productIds[i]].price;
+                sum += $('.productNumber#'+productIds[i]).val() * cartList.products[productIds[i]].price;
             }
-            $('div#sum').text(sum);
+            $('span.sum').text(sum);
         };
 
         const updateCart = () => {
@@ -64,10 +65,26 @@
         $(document).ready(()=>{
             calculateSum();
             disableUselessButton();
+            let changeTimer;
 
             $('input.productNumber').on('change',(event) => {
-                calculateSum();
-                disableUselessButton();
+                clearTimeout(changeTimer);
+                let eventLogic = (event) => {
+                    disableUselessButton();
+                    let productId = $(event.target).attr("name");
+                    let productNumber = $(event.target).val();
+                    $.ajax({
+                        url: "/ecommerce/cart/change/" + productId + "/" + productNumber,
+                        success: (data) => {
+                            cartList = data.cartList;
+                            cart = data.cartList.cart;
+                            calculateSum();
+                        }
+                    });
+                };
+
+                changeTimer = setTimeout(eventLogic(event), 1000);
+
             });
 
             $('button#checkout').on('click',(event) => {
@@ -82,6 +99,20 @@
                     true,
                     true
                 );
+            });
+
+            $('.remove-product-item').on('click',(event) => {
+                let target = $(event.target).closest('.product-list-item');
+                let productId = $(target).find("input.productNumber").attr("name");
+                $.ajax({
+                    url: "/ecommerce/cart/remove/" + productId,
+                    success: (data) => {
+                        target.remove();
+                        cartList = data.cartList;
+                        cart = data.cartList.cart;
+                        calculateSum();
+                    }
+                });
             });
         });
     </script>

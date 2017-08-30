@@ -34,9 +34,6 @@ class ProductSetter extends Setter
                     'return' => 'id'
                 ]
             ],
-            'is_active' => [
-                'is_boolean' => true
-            ],
             'price' => [
                 'positive_number' => true
             ]

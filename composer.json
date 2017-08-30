@@ -2,6 +2,7 @@
     "name": "stylers/ecommerce",
     "description": "eCommerce system for Laravel",
     "license": "MIT",
+    "type": "project",
     "keywords": [
         "laravel", "eCommerce"
     ],

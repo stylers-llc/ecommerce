@@ -59,6 +59,16 @@ class Cart
         \Session::put('cart', $cart);
     }
 
+    public static function remove(int $productId)
+    {
+        $product = Product::findOrFail($productId);
+        $cart = \Session::get('cart');
+        if(array_key_exists($productId, (array) $cart)) {
+            unset($cart[$productId]);
+        }
+        \Session::put('cart', $cart);
+    }
+
     public static function update(array $cartData)
     {
         $cart = [];

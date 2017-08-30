@@ -1,31 +1,34 @@
-@extends('master')
-
-@section('title', 'Product list')
+@extends('layout')
 
 @section('content')
-    <div class="row">
-    @foreach ($productList['data'] as $product)
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                @if (!empty($product['gallery']['items']))
-                    <div class="thumbnail">
-                        <picture>
-                            @foreach($product['gallery']['items'][0]['thumbnails'] as $thumbnail)
-                                <source media="(min-width: {{$thumbnail['width']}})" srcset="/{{$thumbnail['path']}}">
-                            @endforeach
-                            <img src="/{{$product['gallery']['items'][0]['path']}}" alt="{{$product['gallery']['items'][0]['description']['en']}}" style="width:auto;">
-                        </picture>
-                    </div>
-                @endif
-                <div class="caption">
-                    <h3>{{$product['name']['en']}}</h3>
-                    @if(!empty($product['descriptions']['short_description']))
-                        <p>{{ $product['descriptions']['short_description']['en'] }}</p>
-                    @endif
-                    <p><a href="{{ url('ecommerce/product/show', $product['id']) }}" class="btn btn-primary" role="button">More</a></p>
+    <section class="hero" style="background-image: url('/img/tmp/hero-home_2000x750.jpg')">
+        <div class="table hero__table">
+            <div class="table__cell table__cell--vmiddle">
+                <div class="container">
+                    <h1 class="hero__title">
+                        Academy
+                    </h1>
+                    <h2 class="text--blue">Get the knowledge. Put it into action. Grow your practice.</h2>
+                    <p>
+                        Corozon Academy is not your average therapeutic education system for pharmacists. Delivered by clinical experts and other healthcare professionals our courses provide practical information that helps effectively develop and grow your pharmaceutical practice.
+                    </p>
+
+                    <a href="#" class="btn btn--big btn--red btn--270">
+                        <span>Discover Our Courses</span>
+                    </a>
                 </div>
             </div>
         </div>
-    @endforeach
-    </div>
+    </section>
+
+    <main>
+        {{--@include('_sitebuild.partials.components.breadcrumb')--}}
+
+        {{--@include('_sitebuild.partials.components.list-filter')--}}
+
+        @include('partials.product-list')
+
+    </main>
+
+
 @endsection

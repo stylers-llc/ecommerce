@@ -8,11 +8,11 @@
     ],
     "repositories": [
         {
-            "type": "vcs",
-            "url": "https://github.com/stylers-llc/taxonomy"
+            "git": "git",
+            "url": "https://github.com/stylers-llc/taxonomy.git"
         },
         {
-            "type": "vcs",
+            "git": "git",
             "url": "https://github.com/stylers-llc/media.git"
         }
     ],

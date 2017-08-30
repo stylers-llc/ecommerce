@@ -75,7 +75,11 @@ class Cart
         } else {
             $product = Product::findOrFail($productId);
             $cart = \Session::get('cart');
-            $cart[$productId] = $number;
+            if($product->is_singleton) {
+                $cart[$productId] = 1;
+            } else {
+                $cart[$productId] = $number;
+            }
             \Session::put('cart', $cart);
         }
     }

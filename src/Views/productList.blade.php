@@ -25,7 +25,7 @@
         {{--@include('_sitebuild.partials.components.breadcrumb')--}}
 
         {{--@include('_sitebuild.partials.components.list-filter')--}}
-teszt 
+
         @include('partials.product-list')
 
     </main>

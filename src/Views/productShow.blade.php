@@ -1,35 +1,92 @@
-@extends('master')
-
-@section('title', $product['name']['en'])
+@extends('layout')
 
 @section('content')
-<div class="row">
-    <div class="col-sm-12 col-md-12">
-        @if (!empty($product['gallery']['items']))
-            <div class="thumbnail">
-                <picture>
-                    @foreach($product['gallery']['items'][0]['thumbnails'] as $thumbnail)
-                        <source media="(min-width: {{$thumbnail['width']}})" srcset="/{{$thumbnail['path']}}">
-                    @endforeach
-                    <img src="/{{$product['gallery']['items'][0]['path']}}" alt="{{$product['gallery']['items'][0]['description']['en']}}" style="width:auto;">
-                </picture>
+    <section class="hero hero--360" style="background-image: url('/img/tmp/hero-home_2000x750.jpg')">
+        <div class="table hero__table">
+            <div class="table__cell table__cell--vtop">
+                <div class="container">
+                    {{--@include('_sitebuild.partials.components.breadcrumb')--}}
+                </div>
             </div>
-        @endif
-        <h1>{{$product['name']['en']}}</h1>
-        @if(!empty($product['descriptions']['short_description']))
-        <p>{{$product['descriptions']['short_description']['en']}}</p>
-        @endif
-        @if (Auth::check() == true && $product['price'])
-            <p>
-                <h4>Price: {{$product['price']}}</h4>
-                <button class="btn btn-primary btn-sm add-to-cart" data-product-id="{{$product['id']}}" data-is-singleton="{{$product['is_singleton']}}"><span class="glyphicon glyphicon-shopping-cart"></span></button>
-            </p>
-        @endif
-        @if(!empty($product['descriptions']['long_description']))
-        {!! $product['descriptions']['long_description']['en'] !!}
-        @endif
-    </div>
-</div>
+        </div>
+    </section>
+
+    <main class="main--over-hero">
+
+        <section>
+            <div class="container">
+
+                @include('partials.product-details__item', ['product' => $product])
+
+            </div>
+        </section>
+
+        <section class="section--main pt--90">
+            <div class="container">
+
+                <div class="mw--1050">
+
+                    <div class="row">
+
+                        <div class="col-xs-12">
+                            @if(!empty($product['descriptions']['long_description']))
+                                {!! $product['descriptions']['long_description']['en'] !!}
+                            @endif
+                        </div>
+
+                    </div>
+
+                    {{-- TODO @David IDŐSZAKOSAN KIVÉVE AMÍG NINCSENEK FILEOK --}}
+{{--                    <div class="box box--left-gradient bg--white documents-box">
+                        <div class="box__inner-content">
+                            <h2 class="heading-line heading-2--big inline">Documents</h2>
+                            <a href="#" class="btn btn--small btn--red documents-box__btn">
+                                <span>download all documents</span>
+                                <i class="icon-download icon--right" aria-hidden="true"></i>
+                            </a>
+                            <div class="documents-box__files clearfix">
+
+                                <a href="/documents/lorem.pdf" download="Background Information" class="documents-box__file">
+                                <span class="documents-box__file-icon">
+                                    <i class="icon-file icon" aria-hidden="true"></i>
+                                </span>
+                                    <span class="documents-box__file-name">Background Information</span>
+                                    <span class="documents-box__file-type">PDF</span>
+                                </a>
+
+                                <a href="/documents/lorem.pdf" download="User Manual" class="documents-box__file">
+                                <span class="documents-box__file-icon">
+                                    <i class="icon-file icon" aria-hidden="true"></i>
+                                </span>
+                                    <span class="documents-box__file-name">User Manual</span>
+                                    <span class="documents-box__file-type">PDF</span>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>--}}
+
+                </div>
+
+            </div>
+        </section>
+
+        <section class="section--main bg--white pt--90">
+            <div class="container">
+
+                <h3 class="text-center mb--70">
+                    <span>Corozon Academy</span>
+                    <span class="text--light-italic">/ Top courses</span>
+                </h3>
+
+                @include('partials.related-courses__list')
+
+            </div>
+        </section>
+
+    </main>
+
+
 @endsection
 
 @section('script')

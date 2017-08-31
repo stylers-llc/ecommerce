@@ -25,6 +25,19 @@ const cart = (($) => {
         });
     });
 
+    $('.change-cart').on('click', (event) => {
+        let target = $(event.target).closest('a').parent().find('input.productNumber');
+        let productId = $(target).attr("name");
+        let productNumber = $(target).val();
+
+        $.ajax({
+            url: "/ecommerce/cart/change/" + productId + "/" + productNumber,
+            success: (data) => {
+                showAlert(data.msg, "alert-success");
+            }
+        });
+    });
+
     const showAlert = (alert, type) => {
         let alertBox = `<div class="alert ${type}">${alert}</div>`;
         $('div#alert-container').append(alertBox);

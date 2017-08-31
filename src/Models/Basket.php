@@ -15,7 +15,10 @@ class Basket extends Model
         'user_id',
         'basket_status_tx_id',
         'currency',
-        'total'
+        'total', // sub_total_gross + shipping_fee
+        'shipping_fee',
+        'sub_total',  // sub_total net
+        'sub_total_gross'
     ];
 
     public function status()
@@ -42,18 +45,29 @@ class Basket extends Model
     {
         $product->basket_id = $this->id;
         $product->save();
-        $this->total += $product->qty * $product->price;
-        $this->save();
+        $this->refreshTotal();
     }
 
     public function refreshTotal()
     {
         $total = 0;
-        foreach ($this->basketProducts as $product) {
-            $total += $product->qty * $product->price;
+        $sub_total = 0;
+        $sub_total_gross = 0;
+        $has_shipping = false;
+        foreach ($this->basketProducts as $basketProduct) {
+            $sub_total += $basketProduct->qty * $basketProduct->price;
+            $sub_total_gross += $basketProduct->qty * $basketProduct->price * \Config::get('ecommere.tax');
+            if($basketProduct->product->type_taxonomy_id == \Config::get('ecommerce.product_types.equipment')) {
+                $has_shipping = true;
+            }
         }
-
+        if($has_shipping) {
+            $this->total += \Config::get('ecommerce.shipping_fee');
+            $this->shipping_fee = \Config::get('ecommerce.shipping_fee');
+        }
         $this->total = $total;
+        $this->sub_total = $sub_total;
+        $this->sub_total_gross = $sub_total_gross;
         $this->save();
     }
 

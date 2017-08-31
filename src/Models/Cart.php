@@ -12,9 +12,13 @@ class Cart
         $productIds = array_keys((array) $cart);
 
         $products = [];
+        $has_shipping = false;
         for($i = 0; $i < count($productIds); $i++) {
             $productId = $productIds[$i];
             $product = Product::findOrFail($productId);
+            if($product->type_taxonomy_id == \Config::get('ecommerce.product_types.equipment')) {
+                $has_shipping = true;
+            }
             $products[$productId] = (new ProductEntity($product))->getFrontendData();
         }
 
@@ -22,7 +26,10 @@ class Cart
             'success' => true,
             'itemNumber' => self::getProductCount(),
             'cart' => \Session::get('cart'),
-            'products' => $products
+            'products' => $products,
+            'tax' => \Config::get('ecommerce.tax'),
+            'shipping_fee' => \Config::get('ecommerce.shipping_fee'),
+            'has_shipping' => $has_shipping
         ];
     }
 

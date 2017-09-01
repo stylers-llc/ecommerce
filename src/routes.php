@@ -17,7 +17,7 @@ Route::group([
     Route::get('products/list/{type}', 'ProductController@productList');
 
     Route::get('product/{id}', 'ProductController@show');
-    Route::get('product/show/{id}', 'ProductController@productShow');
+    Route::get('product/show/{id}', 'ProductController@productShow')->name('product.show');
     Route::get('product/top/{type}/{number}', 'ProductController@top');
 
 

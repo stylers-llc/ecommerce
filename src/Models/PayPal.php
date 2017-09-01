@@ -48,17 +48,16 @@ class PayPal
                 ->setSku(str_slug($product->product->name->description, "_"));
             $itemList->addItem($tmpItem);
         }
-        /*
+
         $details = new Details();
-        $details->setShipping(1.2)
-            ->setTax(1.3)
-            ->setSubtotal(17.50);
-        */
+        $details->setShipping($this->_basket->shipping_fee)
+            ->setTax(($this->_basket->sub_total_gross - $this->_basket->sub_total))
+            ->setSubtotal($this->_basket->sub_total);
 
         $amount = new Amount();
         $amount->setCurrency($this->_basket->currency)
-            ->setTotal($this->_basket->total);
-            //->setDetails($details);
+            ->setTotal($this->_basket->total)
+            ->setDetails($details);
 
         $date = new \DateTime();
         $transaction = new PayPalTransaction();

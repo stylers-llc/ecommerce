@@ -20,8 +20,11 @@ class PaymentController extends Controller
 {
     public function checkout(Request $request)
     {
-        $cartList = $request->all();
-        Cart::update($cartList);
+        if ($request->isMethod('post')) {
+            $cartList = $request->all();
+            Cart::update($cartList);
+        }
+
         if(Cart::getProductCount() < 1){
             Redirect::getUrlGenerator('ecommerce/products/list');
         }
@@ -35,13 +38,13 @@ class PaymentController extends Controller
     {
         $requestData = $request->all();
         $payment_id = Session::get('paypal_payment_id');
-        $transaction = Transaction::where('payment_id', $requestData['paymentId'])
+        $transaction = Transaction::where('payment_id', $payment_id)
             ->where('pay_status_tx_id', Config::get('ecommerce.transaction_pay_statuses.created'))
             ->firstOrFail();
 
         Session::forget('paypal_payment_id');
 
-        if(is_null($payment_id) || $payment_id != $requestData['paymentId']) {
+        if(empty($requestData['paymentId']) || $requestData['paymentId'] != $payment_id) {
             Session::put('error','Payment failed');
             return Redirect::route('ecommerce.cart.list');
         }
@@ -60,7 +63,7 @@ class PaymentController extends Controller
 
             Event::fire(new PaymentSuccessEvent($transaction->basket));
 
-            return Redirect::route('ecommerce.success');
+            return Redirect::route('ecommerce.cart.success');
         } else {
             Session::put('error','Payment failed');
             return Redirect::route('ecommerce.cart.list');

@@ -70,20 +70,6 @@
 
             </div>
         </section>
-
-        <section class="section--main bg--white pt--90">
-            <div class="container">
-
-                <h3 class="text-center mb--70">
-                    <span>Corozon Academy</span>
-                    <span class="text--light-italic">/ Top courses</span>
-                </h3>
-
-                @include('partials.related-courses__list')
-
-            </div>
-        </section>
-
     </main>
     <script type="text/javascript" src="/plugins/ecommerce/cart.js"></script>
 @endsection

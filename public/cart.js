@@ -15,6 +15,7 @@ const cart = (($) => {
                     target.prop('disabled', false);
                 }
 
+                $('span.shopping-cart__count').text(data.itemNumber);
                 showAlert(data.msg, "alert-success");
             },
             error: (result) => {
@@ -34,6 +35,7 @@ const cart = (($) => {
             url: "/ecommerce/cart/change/" + productId + "/" + productNumber,
             success: (data) => {
                 showAlert(data.msg, "alert-success");
+                $('span.shopping-cart__count').text(data.cartList.itemNumber);
             }
         });
     });

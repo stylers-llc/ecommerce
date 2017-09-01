@@ -85,10 +85,5 @@
         </section>
 
     </main>
-
-
-@endsection
-
-@section('script')
     <script type="text/javascript" src="/plugins/ecommerce/cart.js"></script>
 @endsection

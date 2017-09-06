@@ -54,7 +54,22 @@ class ProductEntity
         foreach ($productDescriptions as $productDescription) {
             $descriptions[$productDescription->descriptionTaxonomy->name] = $this->getDescriptionWithTranslationsData($productDescription->description);
         }
+
+        $this->setSlicedLongDescription($descriptions);
+
         return $descriptions;
+    }
+
+    protected function setSlicedLongDescription(&$descriptions)
+    {
+        if (!empty($descriptions['long_description']))
+        {
+            foreach ($descriptions['long_description'] as $language => $description)
+            {
+                $sliced = preg_split("+<hr\s/>+", $description);
+                $descriptions['long_description_sliced'][$language] = $sliced;
+            }
+        }
     }
 
     protected function getGallery() {

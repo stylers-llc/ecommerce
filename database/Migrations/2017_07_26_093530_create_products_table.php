@@ -79,6 +79,9 @@ class CreateProductsTable extends Migration
             $table->integer('basket_status_tx_id')->unsigned();
             $table->string('currency')->nullable();
             $table->integer('total')->unsigned()->default(0);
+            $table->integer('shipping_fee')->unsigned()->default(0);
+            $table->integer('sub_total')->unsigned()->default(0);
+            $table->integer('sub_total_gross')->unsigned()->default(0);
 
             $table->timestamps();
             $table->softDeletes();

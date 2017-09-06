@@ -32,14 +32,15 @@
                     @else
                     <div class="table__cell table__cell--vmiddle w--100">
                         <b class="box__price box__price--small">
-                            {{ $product['price'] }} $
+                            @if (Auth::check() == true && $product['price']) {{ $product['price'] }} $ @endif
                         </b>
                     </div>
                     <div class="table__cell table__cell--vmiddle text-nowrap">
-                        <input type="text" name="" value="1" class="form-control form-control--small form-control--qty">
-                        <a href="#" class="btn btn--small btn--red">
+                        <input type="text" name="{{$product['id']}}" value="{!! (!empty(\Session::get('cart')[$product['id']])) ? \Session::get('cart')[$product['id']] : 0 !!}" class="form-control form-control--small form-control--qty productNumber">
+                        <a href="#" class="btn btn--small btn--red change-cart">
                             <span>buy now</span>
                             <i class="icon-cart icon--right" aria-hidden="true"></i>
+                            {{-- <button class="btn btn-primary btn-sm add-to-cart" data-product-id="{{$product['id']}}" data-is-singleton="{{$product['is_singleton']}}"><span class="glyphicon glyphicon-shopping-cart"></span></button>--}}
                         </a>
                     </div>
                     @endif

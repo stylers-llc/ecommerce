@@ -15,12 +15,27 @@ const cart = (($) => {
                     target.prop('disabled', false);
                 }
 
+                $('span.shopping-cart__count').text(data.itemNumber);
                 showAlert(data.msg, "alert-success");
             },
             error: (result) => {
                 let statusText = result.statusText;
                 target.prop('disabled', false);
                 showAlert(statusText, "alert-danger");
+            }
+        });
+    });
+
+    $('.change-cart').on('click', (event) => {
+        let target = $(event.target).closest('a').parent().find('input.productNumber');
+        let productId = $(target).attr("name");
+        let productNumber = $(target).val();
+
+        $.ajax({
+            url: "/ecommerce/cart/change/" + productId + "/" + productNumber,
+            success: (data) => {
+                showAlert(data.msg, "alert-success");
+                $('span.shopping-cart__count').text(data.cartList.itemNumber);
             }
         });
     });

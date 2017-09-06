@@ -25,10 +25,9 @@
         {{--@include('_sitebuild.partials.components.breadcrumb')--}}
 
         {{--@include('_sitebuild.partials.components.list-filter')--}}
-teszt 
+
         @include('partials.product-list')
 
     </main>
-
-
+    <script type="text/javascript" src="/plugins/ecommerce/cart.js"></script>
 @endsection

@@ -1,6 +1,4 @@
-@extends('master')
-
-@section('title', "Cart")
+@extends('layout')
 
 @section('content')
     <h3>Products</h3>
@@ -25,9 +23,6 @@
         Total:<div id="sum">0</div>
     </div>
     <button type="button" class="btn-primary btn btn-sm" id="checkout">Checkout</button>
-@endsection
-
-@section('script')
     <script type="text/javascript">
         let cartList = {!! $cartListJson !!};
         console.log(cartList);

@@ -5,8 +5,8 @@
 
             <div class="col-xs-12 col-lg-6 table__cell table__cell--vtop h--100">
                 <div class="table h--100">
-                    <div class="table__cell table__cell--vtop h--100 col-xs-12 col-sm-6 box__img-content" style="background-image: url('/img/tmp/academy-1_645x450.jpg')">
-                        <img src="/img/tmp/academy-1_645x450.jpg" alt="{{ $topCourses[0]['course']['name'] }}" class="visible-xs">
+                    <div class="table__cell table__cell--vtop h--100 col-xs-12 col-sm-6 box__img-content" style="background-image: url('{{ $topCourses[0]['course']['images']['url']['list'] }}')">
+                        <img src="{{ $topCourses[0]['course']['images']['url']['list'] }}" alt="{{ $topCourses[0]['course']['name'] }}" class="visible-xs">
                     </div>
                     <div class="table__cell table__cell--vtop h--100 col-xs-12 col-sm-6 box__text-content bg--lightgray">
                         <div class="table h--100 box">
@@ -116,8 +116,8 @@
 
             <div class="col-xs-12 col-lg-6 table__cell table__cell--vtop h--100">
                 <div class="table h--100">
-                    <div class="table__cell table__cell--vtop h--100 col-xs-12 col-sm-6 box__img-content" style="background-image: url('/img/tmp/academy-1_645x450.jpg')">
-                        <img src="/img/tmp/academy-1_645x450.jpg" alt="{{ $topCourses[1]['course']['name'] }}" class="visible-xs">
+                    <div class="table__cell table__cell--vtop h--100 col-xs-12 col-sm-6 box__img-content" style="background-image: url('{{$topCourses[1]['course']['images']['url']['list']}}')">
+                        <img src="{{ $topCourses[1]['course']['images']['url']['list'] }}" alt="{{ $topCourses[1]['course']['name'] }}" class="visible-xs">
                     </div>
                     <div class="table__cell table__cell--vtop h--100 col-xs-12 col-sm-6 box__text-content bg--lightgray">
                         <div class="table h--100 box">

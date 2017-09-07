@@ -26,19 +26,21 @@
 
                 <div class="mw--1050">
 
-                    <div class="row">
-
-                        @if(!empty($product['descriptions']['long_description_sliced']))
-                            @foreach ($product['descriptions']['long_description_sliced']['en'] as $description)
+                    @if(!empty($product['descriptions']['long_description_sliced']))
+                        <div class="row">
+                            @foreach ($product['descriptions']['long_description_sliced']['en'] as $idx => $description)
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="product-info">
                                         {!! $description !!}
                                     </div>
                                 </div>
+                                @if ($idx % 2 == 1)
+                                    </div>
+                                    <div class="row">
+                                @endif
                             @endforeach
-                        @endif
-
-                    </div>
+                        </div>
+                    @endif
 
                     {{-- TODO @David IDŐSZAKOSAN KIVÉVE AMÍG NINCSENEK FILEOK --}}
 {{--                    <div class="box box--left-gradient bg--white documents-box">

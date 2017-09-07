@@ -23,7 +23,7 @@
                                         <div class="table">
                                             <div class="table__cell table__cell--vmiddle w--100">
                                                 @if ($topCourses[0]['course']['showPrice'])
-                                                    <b class="box__price box__price--small">{{ $topCourses[0]['price'] }} $</b>
+                                                    <b class="box__price box__price--small"> $ {{ $topCourses[0]['price'] }}</b>
                                                 @else
                                                     <b class="box__price-text">
                                                         Please sign in <br> to view the price
@@ -134,7 +134,7 @@
                                         <div class="table">
                                             <div class="table__cell table__cell--vmiddle w--100">
                                                 @if ($topCourses[1]['course']['showPrice'])
-                                                    <b class="box__price box__price--small">{{ $topCourses[1]['price'] }} $</b>
+                                                    <b class="box__price box__price--small">$ {{ $topCourses[1]['price'] }} </b>
                                                 @else
                                                     <b class="box__price-text">
                                                         Please sign in <br> to view the price

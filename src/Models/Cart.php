@@ -2,10 +2,11 @@
 
 namespace Stylers\Ecommerce\Models;
 
-use Stylers\Ecommerce\Entities\ProductEntity;
-
 class Cart
 {
+    const APP_PRODUCT_ENTITY = "\App\Entities\ProductEntity";
+    const DEFAULT_PRODUCT_ENTITY = "\Stylers\Ecommerce\Entities\ProductEntity";
+
     public static function get() : array
     {
         $cart = \Session::get('cart');
@@ -13,13 +14,21 @@ class Cart
 
         $products = [];
         $has_shipping = false;
+        $hasAppEntity = class_exists(self::APP_PRODUCT_ENTITY);
         for($i = 0; $i < count($productIds); $i++) {
             $productId = $productIds[$i];
             $product = Product::findOrFail($productId);
             if($product->type_taxonomy_id == \Config::get('ecommerce.product_types.equipment')) {
                 $has_shipping = true;
             }
-            $products[$productId] = (new ProductEntity($product))->getFrontendData();
+
+            if($hasAppEntity) {
+                $entity = self::APP_PRODUCT_ENTITY;
+            } else {
+                $entity = self::DEFAULT_PRODUCT_ENTITY;
+            }
+
+            $products[$productId] = (new $entity($product))->getFrontendData();
         }
 
         return [

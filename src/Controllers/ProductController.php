@@ -49,7 +49,12 @@ class ProductController extends Controller
     public function productShow(Request $request, $id)
     {
         $productData = $this->show($request, $id);
-        return View::make('productShow', ['product' => $productData['data']]);
+        $topCourses = \App\Entities\ProductEntity::getExtendedCollection(\Stylers\Ecommerce\Models\Product::getTop(2, 'course'));
+
+        return View::make('productShow', [
+            'product' => $productData['data'],
+            'topCourses' => $topCourses
+        ]);
     }
 
     public function top(Request $request, $type = null, int $number = 4) {

@@ -12,6 +12,8 @@ class UserAddress extends Model
     protected $table = 'user_addresses';
 
     protected $fillable = [
+        'name',
+        'phone',
         'user_id',
         'company_name',
         'country',

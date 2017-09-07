@@ -77,6 +77,8 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable();
 
+            $table->string('name')->nullable();
+            $table->string('phone')->nullable();
             $table->string('company_name')->nullable();
             $table->string('country');
             $table->string('postal_code');

@@ -18,7 +18,9 @@ class Basket extends Model
         'total', // sub_total_gross + shipping_fee
         'shipping_fee',
         'sub_total',  // sub_total net
-        'sub_total_gross'
+        'sub_total_gross',
+        'delivery_address_id',
+        'billing_address_id'
     ];
 
     public function status()
@@ -29,6 +31,16 @@ class Basket extends Model
     public function user()
     {
         return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    public function deliveryAddress()
+    {
+        return $this->hasOne(UserAddress::class, 'id', 'delivery_address_id');
+    }
+
+    public function billingAddress()
+    {
+        return $this->hasOne(UserAddress::class, 'id', 'billing_address_id');
     }
 
     public function basketProducts()

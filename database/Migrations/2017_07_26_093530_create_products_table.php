@@ -103,12 +103,17 @@ class CreateProductsTable extends Migration
             $table->integer('shipping_fee')->unsigned()->default(0);
             $table->integer('sub_total')->unsigned()->default(0);
             $table->integer('sub_total_gross')->unsigned()->default(0);
+            $table->integer('delivery_address_id')->unsigned()->nullable();
+            $table->integer('billing_address_id')->unsigned()->nullable();
 
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('basket_status_tx_id')->references('id')->on('taxonomies');
+
+            $table->foreign('delivery_address_id')->references('id')->on('user_addresses');
+            $table->foreign('billing_address_id')->references('id')->on('user_addresses');
         });
 
         Schema::create('basket_products', function (Blueprint $table) {
@@ -163,7 +168,10 @@ class CreateProductsTable extends Migration
         Schema::table('baskets', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
             $table->dropForeign(['basket_status_tx_id']);
+            $table->dropForeign(['delivery_address_id']);
+            $table->dropForeign(['billing_address_id']);
         });
+
         Schema::dropIfExists('baskets');
 
         Schema::table('user_addresses', function (Blueprint $table) {

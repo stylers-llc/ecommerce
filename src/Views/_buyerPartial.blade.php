@@ -1,10 +1,11 @@
 <p>
-    <strong>Buyer name:</strong> {{$basketInfo->user->name}}<br/>
-    <strong>Buyer email:</strong> {{$basketInfo->user->email}}<br/>
-    <strong>Company:</strong> {{$basketInfo->user->company}}<br/>
-    <strong>Postal code:</strong> {{$basketInfo->user->postal}}<br/>
-    <strong>Country:</strong> {{$basketInfo->user->country}}<br/>
-    <strong>State:</strong> {{$basketInfo->user->state}}<br/>
-    <strong>City:</strong> {{$basketInfo->user->city}}<br/>
-    <strong>Address:</strong> {{$basketInfo->user->address1}} {{$basketInfo->user->address2}}<br/>
+    <h3>Delivery infos</h3>
+    <strong>Name:</strong> {{$basketInfo->deliveryAddress->name}}<br/>
+    <strong>Email:</strong> {{$basketInfo->user->email}}<br/>
+    <strong>Company:</strong> {{$basketInfo->deliveryAddress->company_name}}<br/>
+    <strong>Postal code:</strong> {{$basketInfo->deliveryAddress->postal_code}}<br/>
+    <strong>Country:</strong> {{$basketInfo->deliveryAddress->country}}<br/>
+    <strong>State:</strong> {{$basketInfo->deliveryAddress->state}}<br/>
+    <strong>City:</strong> {{$basketInfo->deliveryAddress->city}}<br/>
+    <strong>Address:</strong> {{$basketInfo->deliveryAddress->address_line}} {{$basketInfo->deliveryAddress->address_line_2}}<br/>
 </p>

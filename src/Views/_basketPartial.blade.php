@@ -35,23 +35,23 @@
         <td colspan="4"></td>
     </tr>
     <tr>
-        <td colspan="2"><strong>To:</strong> {{$basketInfo->user->company}}</td>
+        <td colspan="2"><strong>To:</strong> {{$basketInfo->billingAddress->company_name}}</td>
         <td colspan="2"></td>
     </tr>
     <tr>
-        <td colspan="2">{{$basketInfo->user->company}}</td>
+        <td colspan="2">{{$basketInfo->billingAddress->company_name}}</td>
         <td colspan="2"></td>
     </tr>
     <tr>
-        <td colspan="2">{{$basketInfo->user->address1}} {{$basketInfo->user->address2}}</td>
+        <td colspan="2">{{$basketInfo->billingAddress->address_line}} {{$basketInfo->billingAddress->address_line_2}}</td>
         <td colspan="2"></td>
     </tr>
     <tr>
-        <td colspan="2">{{$basketInfo->user->city}}, {{$basketInfo->user->state}}, {{$basketInfo->user->postal}}, {{$basketInfo->user->country}}</td>
+        <td colspan="2">{{$basketInfo->billingAddress->city}}, {{$basketInfo->billingAddress->state}}, {{$basketInfo->billingAddress->postal_code}}, {{$basketInfo->billingAddress->country}}</td>
         <td colspan="2"></td>
     </tr>
     <tr>
-        <td colspan="2"><strong>Attn:</strong> {{$basketInfo->user->name}}</td>
+        <td colspan="2"><strong>Attn:</strong> {{$basketInfo->billingAddress->name}}</td>
         <td colspan="2"></td>
     </tr>
     <tr>

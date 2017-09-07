@@ -164,6 +164,18 @@ class Basket extends Model
                     'state', 'city', 'address1', 'address2'
                 ]);
             },
+            'deliveryAddress' => function($query) {
+                $query->select([
+                    'id', 'name', 'phone', 'company_name', 'country', 'postal_code',
+                    'state', 'city', 'address_line', 'address_line_2'
+                ]);
+            },
+            'billingAddress' => function($query) {
+                $query->select([
+                    'id', 'name', 'phone', 'company_name', 'country', 'postal_code',
+                    'state', 'city', 'address_line', 'address_line_2'
+                ]);
+            },
             'status' => function($query) {
                 $query->select(['id', 'name']);
             },

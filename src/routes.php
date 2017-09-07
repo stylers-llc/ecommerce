@@ -53,6 +53,6 @@ Route::group([
 */
 // Route::get('ecommerce/product/update/{id}', 'Stylers\Ecommerce\Controllers\ProductController@update');
 
-/** @Test routes
- * Route::get('test/sendmail', 'Stylers\Ecommerce\Controllers\BasketController@testSendMail');
- */
+///** @Test routes
+Route::get('test/sendmail', 'Stylers\Ecommerce\Controllers\BasketController@testSendMail');
+// */

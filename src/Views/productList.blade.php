@@ -6,15 +6,15 @@
             <div class="table__cell table__cell--vmiddle">
                 <div class="container">
                     <h1 class="hero__title">
-                        Academy
+                        Hardware
                     </h1>
-                    <h2 class="text--blue">Get the knowledge. Put it into action. Grow your practice.</h2>
+                    <h2 class="text--blue">Get the tools. Expand your services. Help your patients.</h2>
                     <p>
-                        Corozon Academy is not your average therapeutic education system for pharmacists. Delivered by clinical experts and other healthcare professionals our courses provide practical information that helps effectively develop and grow your pharmaceutical practice.
+                        Corozon Hardware offers high quality testing and screening products for point of care tests to detect disease, educate your patients and provide more informed physician recommendations. To master the use of our products, take our corresponding Corozon Academy courses.
                     </p>
 
                     <a href="#" class="btn btn--big btn--red btn--270">
-                        <span>Discover Our Courses</span>
+                        <span>Browse products</span>
                     </a>
                 </div>
             </div>

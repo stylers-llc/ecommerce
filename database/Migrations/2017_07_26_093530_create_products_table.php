@@ -73,6 +73,27 @@ class CreateProductsTable extends Migration
             $table->foreign('description_id')->references('id')->on('descriptions');
         });
 
+        Schema::create('user_addresses', function(Blueprint $table){
+            $table->increments('id');
+            $table->integer('user_id')->unsigned()->nullable();
+
+            $table->string('name')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('company_name')->nullable();
+            $table->string('country');
+            $table->string('postal_code');
+            $table->string('state')->nullable();
+            $table->string('city');
+            $table->string('address_line');
+            $table->string('address_line_2')->nullable();
+
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('user_id')->references('id')->on('users');
+        });
+
+
         Schema::create('baskets', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable();
@@ -82,12 +103,17 @@ class CreateProductsTable extends Migration
             $table->integer('shipping_fee')->unsigned()->default(0);
             $table->integer('sub_total')->unsigned()->default(0);
             $table->integer('sub_total_gross')->unsigned()->default(0);
+            $table->integer('delivery_address_id')->unsigned()->nullable();
+            $table->integer('billing_address_id')->unsigned()->nullable();
 
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('basket_status_tx_id')->references('id')->on('taxonomies');
+
+            $table->foreign('delivery_address_id')->references('id')->on('user_addresses');
+            $table->foreign('billing_address_id')->references('id')->on('user_addresses');
         });
 
         Schema::create('basket_products', function (Blueprint $table) {
@@ -142,8 +168,16 @@ class CreateProductsTable extends Migration
         Schema::table('baskets', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
             $table->dropForeign(['basket_status_tx_id']);
+            $table->dropForeign(['delivery_address_id']);
+            $table->dropForeign(['billing_address_id']);
         });
+
         Schema::dropIfExists('baskets');
+
+        Schema::table('user_addresses', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+        });
+        Schema::dropIfExists('user_addresses');
 
         Schema::table('product_descriptions', function(Blueprint $table) {
             $table->dropForeign(['description_id']);

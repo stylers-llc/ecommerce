@@ -29,7 +29,10 @@ class PaymentController extends Controller
             Redirect::getUrlGenerator('ecommerce/products/list');
         }
 
-        $basket = Basket::createBasket(Cart::get()['cart'], Auth::user()->id);
+        $delivery = \Session::get('delivery');
+        $billing = \Session::get('billing');
+
+        $basket = Basket::createBasket(Cart::get()['cart'], Auth::user()->id, $delivery, $billing);
 
         return (new PayPal($basket))->createPayment();
     }

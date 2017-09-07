@@ -18,7 +18,9 @@ class Basket extends Model
         'total', // sub_total_gross + shipping_fee
         'shipping_fee',
         'sub_total',  // sub_total net
-        'sub_total_gross'
+        'sub_total_gross',
+        'delivery_address_id',
+        'billing_address_id'
     ];
 
     public function status()
@@ -29,6 +31,16 @@ class Basket extends Model
     public function user()
     {
         return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    public function deliveryAddress()
+    {
+        return $this->hasOne(UserAddress::class, 'id', 'delivery_address_id');
+    }
+
+    public function billingAddress()
+    {
+        return $this->hasOne(UserAddress::class, 'id', 'billing_address_id');
     }
 
     public function basketProducts()
@@ -71,13 +83,22 @@ class Basket extends Model
         $basket->save();
     }
 
-    public static function createBasket(array $cart, int $userId = null) : Basket {
+    public static function createBasket(
+        array $cart, int $userId = null, int $deliveryAddressId = null, int $billingAddressId = null
+    ) : Basket {
         $basket = new Basket();
         $basket->basket_status_tx_id = config('ecommerce.basket_statuses.created');
         $basket->currency = config('ecommerce.default_currency');
+        if($deliveryAddressId) {
+            $basket->delivery_address_id = $deliveryAddressId;
+        }
+        if($billingAddressId) {
+            $basket->billing_address_id = $billingAddressId;
+        }
         if($userId) {
             $basket->user_id = $userId;
         }
+
         $basket->save();
 
         foreach($cart as $productId => $productNumber) {

@@ -83,13 +83,22 @@ class Basket extends Model
         $basket->save();
     }
 
-    public static function createBasket(array $cart, int $userId = null) : Basket {
+    public static function createBasket(
+        array $cart, int $userId = null, int $deliveryAddressId = null, int $billingAddressId = null
+    ) : Basket {
         $basket = new Basket();
         $basket->basket_status_tx_id = config('ecommerce.basket_statuses.created');
         $basket->currency = config('ecommerce.default_currency');
+        if($deliveryAddressId) {
+            $basket->delivery_address_id = $deliveryAddressId;
+        }
+        if($billingAddressId) {
+            $basket->billing_address_id = $billingAddressId;
+        }
         if($userId) {
             $basket->user_id = $userId;
         }
+
         $basket->save();
 
         foreach($cart as $productId => $productNumber) {

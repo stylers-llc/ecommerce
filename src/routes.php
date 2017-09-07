@@ -1,5 +1,6 @@
 <?php
 
+/* @todo @ivan ezelet mar a projekt kezeli, de azert nem torlom csak kikommentezem
 Route::group([
     'middleware' => ['web'],
     'prefix' => 'ecommerce',
@@ -22,6 +23,7 @@ Route::group([
 
 
 });
+*/
 
 Route::group([
     'middleware' => ['web','auth'],

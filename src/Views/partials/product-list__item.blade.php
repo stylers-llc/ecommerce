@@ -19,7 +19,7 @@
                 @if(!empty($product['descriptions']['short_description']))
                     <p>{{ $product['descriptions']['short_description']['en'] }}</p>
                 @endif
-                <p><a href="{{ url('ecommerce/product/show', $product['id']) }}" class="btn btn-primary" role="button">More</a></p>
+                <p><a href="{{ route('site.hardware.product.details', ['slug' => $product['id']]) }}" class="btn btn-primary" role="button">More</a></p>
             </div>
             <div class="box__buttons">
                 <div class="table">

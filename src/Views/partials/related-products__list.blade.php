@@ -4,11 +4,11 @@
         <div class="table table--border-spacing table--main h--100">
 
             <div class="col-xs-12 col-lg-6 table__cell table__cell--vtop h--100">
-                @include('_sitebuild.partials.components.related-products__item')
+                @include('partials.components.related-products__item')
             </div>
 
             <div class="col-xs-12 col-lg-6 table__cell table__cell--vtop h--100">
-                @include('_sitebuild.partials.components.related-products__item-2')
+                @include('partials.components.related-products__item-2')
             </div>
 
         </div>

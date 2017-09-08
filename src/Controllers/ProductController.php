@@ -49,11 +49,13 @@ class ProductController extends Controller
     public function productShow(Request $request, $id)
     {
         $productData = $this->show($request, $id);
-        $topCourses = \App\Entities\ProductEntity::getExtendedCollection(\Stylers\Ecommerce\Models\Product::getTop(2, 'course'));
+        if(is_callable(["\\App\\ProductRelation", "getRelatedProductEntities"])) {
+            $relatedCourses = \App\ProductRelation::getRelatedProductEntities($id, "course");
+        }
 
         return View::make('productShow', [
             'product' => $productData['data'],
-            'topCourses' => $topCourses
+            'relatedCourses' => $relatedCourses
         ]);
     }
 

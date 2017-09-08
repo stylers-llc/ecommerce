@@ -35,12 +35,12 @@ class Basket extends Model
 
     public function deliveryAddress()
     {
-        return $this->hasOne(UserAddress::class, 'id', 'delivery_address_id');
+        return $this->hasOne(UserAddress::class, 'id', 'delivery_address_id')->withTrashed();
     }
 
     public function billingAddress()
     {
-        return $this->hasOne(UserAddress::class, 'id', 'billing_address_id');
+        return $this->hasOne(UserAddress::class, 'id', 'billing_address_id')->withTrashed();
     }
 
     public function basketProducts()

@@ -82,7 +82,7 @@
 
                 <h3 class="text-center mb--70">
                     <span>Corozon Academy</span>
-                    <span class="text--light-italic">/ Top courses</span>
+                    <span class="text--light-italic">/ Related courses</span>
                 </h3>
 
                 @include('partials.components.related-courses__list')

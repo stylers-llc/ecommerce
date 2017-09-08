@@ -351,7 +351,7 @@
     </div>
 
     <div class="text-center">
-        <a href="route('site.hardware.product.list')" class="btn btn--big btn--blue btn--340 btn--section">
+        <a href="{{ route('site.hardware.product.list') }}" class="btn btn--big btn--blue btn--340 btn--section">
             <span>Check out the full list of products </span>
         </a>
     </div>

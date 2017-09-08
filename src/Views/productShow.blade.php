@@ -5,7 +5,7 @@
         <div class="table hero__table">
             <div class="table__cell table__cell--vtop">
                 <div class="container">
-                    {{--@include('_sitebuild.partials.components.breadcrumb')--}}
+                    {!! Breadcrumbs::render('site.hardware.product.details',  $product) !!}
                 </div>
             </div>
         </div>

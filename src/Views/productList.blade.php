@@ -22,7 +22,7 @@
     </section>
 
     <main>
-        {{--@include('_sitebuild.partials.components.breadcrumb')--}}
+        {!! Breadcrumbs::render('site.hardware.product.list') !!}
 
         {{--@include('_sitebuild.partials.components.list-filter')--}}
 

@@ -23,7 +23,7 @@
                                         <div class="table">
                                             <div class="table__cell table__cell--vmiddle w--100">
                                                 @if ($relatedCourses[0]['course']['showPrice'])
-                                                    <b class="box__price box__price--small"> $ {{ $relatedCourses[0]['price'] }}</b>
+                                                    <b class="box__price box__price--small"> {{ formatPrice($relatedCourses[0]['price']) }}</b>
                                                 @else
                                                     <b class="box__price-text">
                                                         Please sign in <br> to view the price
@@ -135,7 +135,7 @@
                                         <div class="table">
                                             <div class="table__cell table__cell--vmiddle w--100">
                                                 @if ($relatedCourses[1]['course']['showPrice'])
-                                                    <b class="box__price box__price--small">$ {{ $relatedCourses[1]['price'] }} </b>
+                                                    <b class="box__price box__price--small">{{ formatPrice($relatedCourses[1]['price']) }}</b>
                                                 @else
                                                     <b class="box__price-text">
                                                         Please sign in <br> to view the price
@@ -157,7 +157,7 @@
                                     <div>
                                         <!-- .collapse-course-1 az elso elemnel, collapse-course-2 a masodik elemnel es igy tovabb... -->
                                         <a role="button" data-toggle="collapse" href=".collapse-course-2" aria-expanded="false" aria-controls="collapse-course-1" class="link link--purple link--toggle">
-                                            <span>List of lesson</span>
+                                            <span>List of Lessons</span>
                                             <i class="icon-arrowdown icon--right" aria-hidden="true"></i>
                                         </a>
                                     </div>

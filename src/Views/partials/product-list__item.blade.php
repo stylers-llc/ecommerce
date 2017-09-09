@@ -32,7 +32,7 @@
                     @else
                     <div class="table__cell table__cell--vmiddle w--100">
                         <b class="box__price box__price--small">
-                            @if (Auth::check() == true && $product['price']) $ {{ formatPrice($product['price']) }}  @endif
+                            @if (Auth::check() == true && $product['price']) {{ formatPrice($product['price']) }}  @endif
                         </b>
                     </div>
                     <div class="table__cell table__cell--vmiddle text-nowrap">

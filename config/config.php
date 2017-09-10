@@ -9,7 +9,7 @@ return [
         'address_line_2'   => 'address_line_2',
         'phone' => 'phone'
     ],
-    'shipping_fee' => 25,
+    'shipping_fee' => '25.00',
     'tax' => 1.13,
     'product_type' => 500,
     'product_types' => [

@@ -120,7 +120,6 @@ class Basket extends Model
         return $basket;
     }
 
-
     public static function getPaidBaskets() {
         return self::getBaseBasketEloquent((int) config('ecommerce.basket_statuses.paid'));
     }

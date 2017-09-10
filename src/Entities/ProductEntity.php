@@ -11,6 +11,8 @@ use Stylers\Ecommerce\Models\ProductDescription;
 use Stylers\Taxonomy\Entities\DescriptionEntity;
 use Stylers\Taxonomy\Models\Description;
 
+use Cosima\Documents\Presenters\FilePresenterInterface;
+
 class ProductEntity
 {
     protected $product;
@@ -72,6 +74,28 @@ class ProductEntity
         }
     }
 
+    protected function getGallery()
+    {
+        $filePresenter = app(FilePresenterInterface::class);
+        $images = $filePresenter->getImages('productImages', $this->product->id);
+
+        $gallery = [];
+
+        foreach ($images as $image)
+        {
+            $gallery['items'][]= [
+                'path' => substr($image['courseListUrl'], 1),
+                'description' => [
+                    'en' => '' # @todo @ivan @2017.09.09. ez azert kell, hogy ne hasaljon el a cart megjelenitoje
+                ]
+            ];
+        }
+
+        return $gallery;
+    }
+
+    # @todo @ivan stylers media kezelo
+    /*
     protected function getGallery() {
         $gallery = Gallery::where('galleryable_type', Product::class)
             ->where('galleryable_id', $this->product->id)
@@ -84,6 +108,7 @@ class ProductEntity
 
         return [];
     }
+    */
 
     public static function getCollection($products, array $additions = [])
     {

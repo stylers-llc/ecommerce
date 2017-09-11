@@ -76,19 +76,32 @@
 
             </div>
         </section>
+        @if(count($relatedCourses) > 1)
+            <section class="section--main bg--white pt--90">
+                <div class="container">
+                    <h3 class="text-center mb--70">
+                        <span>Corozon Academy</span>
+                        <span class="text--light-italic">/ Related courses</span>
+                    </h3>
 
+                    @include('partials.components.related-courses__list')
+
+                </div>
+            </section>
+        @endif
+        @if(count($relatedProducts) > 1)
         <section class="section--main bg--white pt--90">
             <div class="container">
-
                 <h3 class="text-center mb--70">
-                    <span>Corozon Academy</span>
-                    <span class="text--light-italic">/ Related courses</span>
+                    <span>Corozon Hardware</span>
+                    <span class="text--light-italic">/ Related hardware</span>
                 </h3>
 
-                @include('partials.components.related-courses__list')
+                @include('partials.related-products__list')
 
             </div>
         </section>
+        @endif
 
     </main>
     <script type="text/javascript" src="/plugins/ecommerce/cart.js"></script>

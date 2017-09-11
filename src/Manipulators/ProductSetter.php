@@ -8,6 +8,7 @@ use Stylers\Ecommerce\Models\Product;
 use Stylers\Ecommerce\Models\ProductClassification;
 use Stylers\Ecommerce\Models\ProductDescription;
 use Stylers\Taxonomy\Manipulators\DescriptionSetter;
+use Stylers\Taxonomy\Models\Description;
 use Stylers\Taxonomy\Models\Taxonomy;
 
 class ProductSetter extends Setter
@@ -61,6 +62,12 @@ class ProductSetter extends Setter
         $this->product->type_taxonomy_id = $this->attributes['type_taxonomy_id'];
         $this->product->price = (!empty($this->attributes['price'])) ? $this->attributes['price'] : null;
         $this->product->is_singleton = (!empty($this->attributes['is_singleton'])) ? (bool) $this->attributes['is_singleton'] : false;
+
+        if(!empty($this->attributes['slug']) && strlen(trim($this->attributes['slug'])) > 0) {
+            $this->product->slug = $this->attributes['slug'];
+        } else {
+            $this->product->slug = str_slug(Description::find($this->product->name_description_id)->description);
+        }
 
         if(empty($this->attributes['stock'])) {
             $this->product->stock = null;

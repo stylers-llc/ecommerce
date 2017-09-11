@@ -15,6 +15,7 @@ class Product extends Model
         ClassificableTrait;
 
     protected $fillable = [
+        'slug',
         'name_description_id',
         'type_taxonomy_id',
         'is_active',
@@ -44,7 +45,11 @@ class Product extends Model
         }
 
         if($typeTx) {
-            return Product::where('type_taxonomy_id',$typeTx->id)->where('is_active', true)->orderBy('number_of_sales','desc')->take($number)->get();
+            return Product::where('type_taxonomy_id',$typeTx->id)
+                ->where('is_active', true)
+                ->orderBy('number_of_sales','desc')
+                ->take($number)
+                ->get();
         }
         return Product::orderBy('number_of_sales DESC')->take($number)->get();
     }

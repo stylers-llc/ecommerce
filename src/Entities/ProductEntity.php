@@ -30,6 +30,7 @@ class ProductEntity
             'name' => $this->getDescriptionWithTranslationsData($this->product->name),
             'descriptions' => $this->getProductDescriptionsData($this->product->id),
             'price' => $this->product->price,
+            'slug' => $this->product->slug,
             'is_singleton' => (bool) $this->product->is_singleton
         ];
 

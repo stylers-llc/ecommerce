@@ -22,7 +22,7 @@
                         <div class="table__cell table__cell--vmiddle">
                             <a href="#" class="btn btn--small btn--blue">
                                 <span>buy now</span>
-                                <i class="fa fa-shopping-cart icon icon--right" aria-hidden="true"></i>
+                                <i class="icon-cart icon--right" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>

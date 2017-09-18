@@ -24,7 +24,7 @@
                     @if( empty(Auth::user()->name) )
                         <div class="table__cell table__cell--vmiddle w--100">
                             <b class="box__price-text">
-                                Please sign in to <br> view the price
+                                Please sign in to view the price
                             </b>
                         </div>
                     @else
@@ -34,7 +34,7 @@
                             </b>
                         </div>
                         <div class="table__cell table__cell--vmiddle text-nowrap">
-                            <input type="text" name="{{$product['id']}}" value="{!! (!empty(\Session::get('cart')[$product['id']])) ? \Session::get('cart')[$product['id']] : 0 !!}" class="form-control form-control--small form-control--qty productNumber">
+                            <input type="number" name="{{$product['id']}}" value="{!! (!empty(\Session::get('cart')[$product['id']])) ? \Session::get('cart')[$product['id']] : 1 !!}" class="form-control form-control--small form-control--qty productNumber">
                             <a href="#" class="btn btn--small btn--red change-cart">
                                 <span>buy now</span>
                                 <i class="icon-cart icon--right" aria-hidden="true"></i>

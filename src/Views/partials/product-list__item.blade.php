@@ -15,7 +15,7 @@
         <div class="box box--left-gradient bg--white">
             <div class="box__inner-content">
                 <span class="box__category">{{$product['category']}}</span>
-                <h1>{{$product['name']['en']}}</h1>
+                <h2><a href="{{ route('site.hardware.product.details', ['id' => $product['id']]) }}" class="link--purple">{{$product['name']['en']}}</a></h2>
                 @if(!empty($product['descriptions']['short_description']))
                     <p>{{ $product['descriptions']['short_description']['en'] }}</p>
                 @endif
@@ -26,7 +26,7 @@
                     @if( empty(Auth::user()->name) )
                     <div class="table__cell table__cell--vmiddle w--100">
                         <b class="box__price-text">
-                            Please sign in to <br> view the price
+                            Please sign in to view the price
                         </b>
                     </div>
                     @else
@@ -36,7 +36,7 @@
                         </b>
                     </div>
                     <div class="table__cell table__cell--vmiddle text-nowrap">
-                        <input type="text" name="{{$product['id']}}" value="{!! (!empty(\Session::get('cart')[$product['id']])) ? \Session::get('cart')[$product['id']] : 1 !!}" class="form-control form-control--small form-control--qty productNumber">
+                        <input type="number" name="{{$product['id']}}" value="{!! (!empty(\Session::get('cart')[$product['id']])) ? \Session::get('cart')[$product['id']] : 1 !!}" class="form-control form-control--small form-control--qty productNumber">
                         <a href="#" class="btn btn--small btn--red change-cart">
                             <span>buy now</span>
                             <i class="icon-cart icon--right" aria-hidden="true"></i>

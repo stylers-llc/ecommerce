@@ -29,7 +29,7 @@
                                                             <b class="box__price box__price--small"> {{ formatPrice($relatedCourses[$i]['price']) }}</b>
                                                         @else
                                                             <b class="box__price-text">
-                                                                Please sign in <br> to view the price
+                                                                Please sign in to view the price
                                                             </b>
                                                         @endif
                                                     </div>
@@ -141,7 +141,7 @@
                                                             <b class="box__price box__price--small">{{ formatPrice($relatedCourses[$i+1]['price']) }}</b>
                                                         @else
                                                             <b class="box__price-text">
-                                                                Please sign in <br> to view the price
+                                                                Please sign in to view the price
                                                             </b>
                                                         @endif
                                                     </div>

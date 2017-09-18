@@ -42,6 +42,7 @@ class ProductEntity
         }
 
         $return['gallery'] = $this->getGallery();
+        $return['files'] = $this->getProductFiles();
 
         return $return;
     }
@@ -93,6 +94,28 @@ class ProductEntity
         }
 
         return $gallery;
+    }
+
+    protected function getProductFiles()
+    {
+        $filePresenter = app(FilePresenterInterface::class);
+        $fileHolder = $filePresenter->getFiles('productFiles', $this->product->id);
+        $files = [];
+
+        foreach ($fileHolder as $file)
+        {
+            $files['items'][]= [
+                'id' => $file['id'],
+                'ext' => $file['ext'],
+                'name' => $file['name'],
+                'size' => $file['readableSize'],
+                'description' => [
+                    'en' => '' # @todo @ivan @2017.09.09. ez azert kell, hogy ne hasaljon el a cart megjelenitoje
+                ]
+            ];
+        }
+
+        return $files;
     }
 
     # @todo @ivan stylers media kezelo

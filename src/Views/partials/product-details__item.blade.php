@@ -13,7 +13,7 @@
     <div class="col-xs-12 col-sm-6 box__text-content">
         <div class="box box--left-gradient bg--white">
             <div class="box__inner-content">
-                <span class="box__category">{{$product['category']}}</span>
+                <span class="box__category">{{$product['category']['name']}}</span>
                 <h1>{{$product['name']['en']}}</h1>
                 @if(!empty($product['descriptions']['short_description']))
                     <p>{{$product['descriptions']['short_description']['en']}}</p>

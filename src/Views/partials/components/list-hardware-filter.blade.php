@@ -1,6 +1,6 @@
 <form method="post" action="{{ route('product.filter') }}" class="form form--default">
     {!! csrf_field() !!}
-    <input type="hidden" name="academyFilter" value="1" />
+    <input type="hidden" name="productFilter" value="1" />
     <div class="list-filter-wrapper list-filter-wrapper--top">
         <div class="container box__text-content">
             <select class="js-selectboxit custom-select" id="filterCategory" name="filterCategory">

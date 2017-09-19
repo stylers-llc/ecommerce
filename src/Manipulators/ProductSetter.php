@@ -75,9 +75,10 @@ class ProductSetter extends Setter
             $this->product->stock = $this->attributes['stock'];
         }
 
+        $this->product->category_id = $this->attributes['category'];
         $this->product->saveOrFail();
 
-        if(!empty($this->attributes['category'])) {
+/*        if(!empty($this->attributes['category'])) {
             $tx = Taxonomy::getOrCreateTaxonomy($this->attributes['category'], \Config::get('ecommerce.category'));
             ProductClassification::where('taxonomy_id', \Config::get('ecommerce.category'))->where('product_id',$this->product->id)->delete();
             $pc = new ProductClassification();
@@ -87,7 +88,7 @@ class ProductSetter extends Setter
                 \Config::get('ecommerce.category'),
                 $this->attributes['category']
             );
-        }
+        }*/
 
         if(!empty($this->attributes['descriptions']['short_description'])) {
             (new ProductDescription())->setDescription(

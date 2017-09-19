@@ -10,6 +10,7 @@ use Stylers\Media\Entities\GalleryEntity;
 use Stylers\Ecommerce\Models\ProductDescription;
 use Stylers\Taxonomy\Entities\DescriptionEntity;
 use Stylers\Taxonomy\Models\Description;
+use App\Category;
 
 use Cosima\Documents\Presenters\FilePresenterInterface;
 
@@ -34,8 +35,10 @@ class ProductEntity
             'is_singleton' => (bool) $this->product->is_singleton
         ];
 
-        $pc = ProductClassification::where('product_id',$this->product->id)->where('taxonomy_id',\Config::get('ecommerce.category'))->first();
-        $return['category'] = ($pc) ? $pc->valueTaxonomy->name : null;
+        //$pc = ProductClassification::where('product_id',$this->product->id)->where('taxonomy_id',\Config::get('ecommerce.category'))->first();
+        //$return['category'] = ($pc) ? $pc->valueTaxonomy->name : null;
+        $return['category']['id'] =  $this->product->category_id;
+        $return['category']['name'] =  Category::find($this->product->category_id)->name;
 
         if(in_array('stock', $additions)) {
             $return['stock'] = $this->product->stock;

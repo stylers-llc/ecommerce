@@ -37,6 +37,7 @@ class PayPal
 
         $products = $this->_basket->basketProducts();
 
+
         $itemList = new ItemList();
 
         foreach ($products as $product) {

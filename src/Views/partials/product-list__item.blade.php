@@ -14,7 +14,7 @@
     <div class="col-xs-12 col-sm-6 box__text-content">
         <div class="box box--left-gradient bg--white">
             <div class="box__inner-content">
-                <span class="box__category">{{$product['category']}}</span>
+                <span class="box__category">{{$product['category']['name']}}</span>
                 <h2><a href="{{ route('site.hardware.product.details', ['id' => $product['id']]) }}" class="link--purple">{{$product['name']['en']}}</a></h2>
                 @if(!empty($product['descriptions']['short_description']))
                     <p>{{ $product['descriptions']['short_description']['en'] }}</p>

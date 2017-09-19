@@ -24,7 +24,7 @@
     <main>
         {!! Breadcrumbs::render('site.hardware.product.list') !!}
 
-        @include('partials.components.list-filter')
+        @include('partials.components.list-hardware-filter')
 
         @include('partials.product-list')
 

@@ -14,6 +14,7 @@ use Stylers\Media\Models\Gallery;
 use Stylers\Media\Models\GalleryItem;
 use Stylers\Taxonomy\Models\Language;
 use Stylers\Taxonomy\Models\Taxonomy;
+use App\Category;
 
 class ProductController extends Controller
 {
@@ -43,7 +44,19 @@ class ProductController extends Controller
 
     public function productList(Request $request, $type = null) {
         $productList = $this->index($request, $type);
-        return View::make('productList', ['productList' => $productList]);
+        $productListColl = collect(ProductEntity::getCollection(Product::all()));
+        $categories = Category::all();
+        $catId = 1;
+
+        if( isset( $request->productFilter ) ) {
+            $catId = $request->filterCategory;
+
+            $productList['data'] = $productListColl->filter(function ($value) use ($catId) {
+                return $value['category']['id'] == $catId;
+            });
+        }
+
+        return View::make('productList', ['productList' => $productList, 'catId' => $catId, 'categories' => $categories]);
     }
 
     public function productShow(Request $request, $id)

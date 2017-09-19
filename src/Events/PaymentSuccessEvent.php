@@ -21,6 +21,5 @@ class PaymentSuccessEvent extends Event
     {
         $this->basket = $basket;
         $this->basketInfo = Basket::getBasketInfoById($basket->id);
-        print($this->basketInfo);
     }
 }

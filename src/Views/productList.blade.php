@@ -13,7 +13,7 @@
                         Corozon Hardware offers high quality testing and screening products for point of care tests to detect disease, educate your patients and provide more informed physician recommendations. To master the use of our products, take our corresponding Corozon Academy courses.
                     </p>
 
-                    <a href="#" class="btn btn--big btn--red btn--270">
+                    <a href="#product-list" class="btn btn--big btn--red btn--270">
                         <span>Browse products</span>
                     </a>
                 </div>

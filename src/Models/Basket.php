@@ -127,6 +127,14 @@ class Basket extends Model
         return self::getBaseBasketEloquent((int) config('ecommerce.basket_statuses.paid'));
     }
 
+    public static function getDoneBaskets() {
+        return self::getBaseBasketEloquent((int) config('ecommerce.basket_statuses.done'));
+    }
+
+    public static function getCanceledBaskets() {
+        return self::getBaseBasketEloquent((int) config('ecommerce.basket_statuses.canceled'));
+    }
+
     public static function getBaseBasketEloquent(int $statusId = null) {
         $basket = Basket::with([
             'user' => function($query) {

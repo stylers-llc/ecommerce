@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Config;
 use Stylers\Taxonomy\Models\Taxonomy;
+use Illuminate\Support\Facades\DB;
 
 class Basket extends Model
 {
@@ -106,10 +107,12 @@ class Basket extends Model
             if($product->is_singleton && $productNumber > 1) {
                 $productNumber = 1;
             }
+            $productName = DB::table('descriptions')->where('id', $product->name_description_id)->value('description');
 
             $basketProduct = new BasketProduct();
             $basketProduct->product_id = $product->id;
             $basketProduct->price = $product->price;
+            $basketProduct->product_name = $productName;
             $basketProduct->qty = $productNumber;
             $basketProduct->save();
             $basket->addProduct($basketProduct);

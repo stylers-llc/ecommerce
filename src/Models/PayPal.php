@@ -150,7 +150,10 @@ class PayPal
         $shippingAddress = new ShippingAddress();
 
         $shippingAddress->setRecipientName($address->name);
-        $shippingAddress->setPhone($address->phone);
+        if ($address->phone)
+        {
+            $shippingAddress->setPhone($address->phone);
+        }
         $shippingAddress->setState($address->state);
         $shippingAddress->setCountryCode($address->country);
         $shippingAddress->setPostalCode($address->postal_code);
@@ -170,7 +173,10 @@ class PayPal
 
         $billingAddress = new Address();
 
-        $billingAddress->setPhone($address->phone);
+        if ($address->phone)
+        {
+            $billingAddress->setPhone($address->phone);
+        }
         $billingAddress->setState($address->state);
         $billingAddress->setCountryCode($address->country);
         $billingAddress->setPostalCode($address->postal_code);

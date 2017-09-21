@@ -8,6 +8,7 @@ use Stylers\Ecommerce\Models\ProductClassification;
 use Stylers\Media\Models\Gallery;
 use Stylers\Media\Entities\GalleryEntity;
 use Stylers\Ecommerce\Models\ProductDescription;
+use Stylers\Taxonomy\Models\Taxonomy;
 use Stylers\Taxonomy\Entities\DescriptionEntity;
 use Stylers\Taxonomy\Models\Description;
 use App\Category;
@@ -88,12 +89,23 @@ class ProductEntity
 
         foreach ($images as $image)
         {
-            $gallery['items'][]= [
-                'path' => substr($image['courseListUrl'], 1),
+            $item = [
                 'description' => [
                     'en' => '' # @todo @ivan @2017.09.09. ez azert kell, hogy ne hasaljon el a cart megjelenitoje
                 ]
             ];
+
+            switch ($this->product->type->name)
+            {
+                case 'equipment':
+                    $item['path'] = substr($image['productListUrl'], 1);
+                    break;
+                case 'course':
+                    $item['path'] = substr($image['courseListUrl'], 1);
+                    break;
+            }
+
+            $gallery['items'][] = $item;
         }
 
         return $gallery;

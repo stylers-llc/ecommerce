@@ -15,11 +15,11 @@
         <div class="box box--left-gradient bg--white">
             <div class="box__inner-content">
                 <span class="box__category">{{$product['category']['name']}}</span>
-                <h2><a href="{{ route('site.hardware.product.details', ['id' => $product['id']]) }}" class="link--purple">{{$product['name']['en']}}</a></h2>
+                <h2><a href="{{ route('site.hardware.product.details', ['slug' => $product['slug'], 'id' => $product['id']]) }}" class="link--purple">{{$product['name']['en']}}</a></h2>
                 @if(!empty($product['descriptions']['short_description']))
                     <p>{{ $product['descriptions']['short_description']['en'] }}</p>
                 @endif
-                <p><a href="{{ route('site.hardware.product.details', ['id' => $product['id']]) }}" class="btn btn--small btn--blue" role="button"><span>More</span></a></p>
+                <p><a href="{{ route('site.hardware.product.details', ['slug' => $product['slug'], 'id' => $product['id']]) }}" class="btn btn--small btn--blue" role="button"><span>More</span></a></p>
             </div>
             <div class="box__buttons">
                 <div class="table">

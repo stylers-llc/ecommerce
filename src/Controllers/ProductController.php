@@ -59,7 +59,7 @@ class ProductController extends Controller
         return View::make('productList', ['productList' => $productList, 'catId' => $catId, 'categories' => $categories]);
     }
 
-    public function productShow(Request $request, $id)
+    public function productShow(Request $request, $slug, $id)
     {
         $productData = $this->show($request, $id);
         if(is_callable(["\\App\\ProductRelation", "getRelatedProductEntities"])) {

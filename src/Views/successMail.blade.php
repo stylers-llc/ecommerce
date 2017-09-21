@@ -32,9 +32,15 @@
     </tr>
 
     <tr>
-        <td height="60" style="height: 60px;" colspan="3">
-            <h2>Invoice</h2>
+        <td width="20" style="width: 20px;">
+            &nbsp;
+        </td>
+        <td style="vertical-align: top;">
+            <p>Invoice</p>
             @include('_basketPartial', ['basketInfo' => $basketInfo])
+        </td>
+        <td width="20" style="width: 20px;">
+            &nbsp;
         </td>
     </tr>
 

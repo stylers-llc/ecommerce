@@ -96,7 +96,7 @@
                                                     --}}
                                                     <span class="lesson-list__type">
                                                 <i class="icon-play icon--left" aria-hidden="true"></i>
-                                                <b>VIDEO</b>
+                                                <b>{{$lesson->lessontype->name}}</b>
                                             </span>
                                                 </div>
                                             </div>
@@ -208,7 +208,7 @@
                                                     --}}
                                                     <span class="lesson-list__type">
                                                 <i class="icon-play icon--left" aria-hidden="true"></i>
-                                                <b>VIDEO</b>
+                                                <b>{{$lesson->lessontype->name}}</b>
                                             </span>
                                                 </div>
                                             </div>
@@ -273,7 +273,7 @@
                                                 --}}
                                                 <span class="lesson-list__type">
                                                 <i class="icon-play icon--left" aria-hidden="true"></i>
-                                                <b>VIDEO</b>
+                                                <b>{{$lesson->lessontype->name}}</b>
                                             </span>
                                             </div>
                                         </div>
@@ -332,7 +332,7 @@
                                                 --}}
                                                 <span class="lesson-list__type">
                                                 <i class="icon-play icon--left" aria-hidden="true"></i>
-                                                <b>VIDEO</b>
+                                                <b>{{$lesson->lessontype->name}}</b>
                                             </span>
                                             </div>
                                         </div>

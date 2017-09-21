@@ -15,6 +15,8 @@ use Stylers\Media\Models\GalleryItem;
 use Stylers\Taxonomy\Models\Language;
 use Stylers\Taxonomy\Models\Taxonomy;
 use App\Category;
+use Redis;
+
 
 class ProductController extends Controller
 {
@@ -47,16 +49,38 @@ class ProductController extends Controller
         $productListColl = collect(ProductEntity::getCollection(Product::all()));
         $categories = Category::all();
         $catId = 1;
+        $needScroll = false;
+        $filterRoute = 'product.filter';
+        $catLead = '';
 
-        if( isset( $request->productFilter ) ) {
-            $catId = $request->filterCategory;
+        //Megnézzük, hogy volt-e már előzőleg szűrés ha igen akkor szűrt adatot mutatunk
+        if(Redis::get('filter') == 'hardware') {
+            $catId = Redis::get('filter_cat');
+            Redis::set('filter', '');
+            $needScroll = true;
+            $catLead = Category::find($catId)->toArray();
 
             $productList['data'] = $productListColl->filter(function ($value) use ($catId) {
                 return $value['category']['id'] == $catId;
             });
         }
 
-        return View::make('productList', ['productList' => $productList, 'catId' => $catId, 'categories' => $categories]);
+
+        if( isset( $request->productFilter ) && $request->filterCategory != 0) {
+            Redis::set('filter', 'hardware');
+            Redis::set('filter_cat', $request->filterCategory);
+
+            $needScroll = true;
+            $catId = $request->filterCategory;
+            $catLead = Category::find($catId)->toArray();
+
+            $productList['data'] = $productListColl->filter(function ($value) use ($catId) {
+                return $value['category']['id'] == $catId;
+            });
+        }
+
+
+        return View::make('productList', ['productList' => $productList, 'catId' => $catId, 'categories' => $categories, 'filterRoute'=>$filterRoute, 'needScroll' => $needScroll, 'catLead' => $catLead]);
     }
 
     public function productShow(Request $request, $slug, $id)

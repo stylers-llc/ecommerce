@@ -13,7 +13,7 @@ return [
     'tax' => 1.13,
     'product_type' => 500,
     'product_types' => [
-        'equipment' => 501,
+        'hardware' => 501,
         'course' => 514
     ],
     'product_description_type' => 502,

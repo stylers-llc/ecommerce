@@ -23,7 +23,7 @@ class ProductSetterTest extends TestCase {
     public function is_active_attribute_required_by_exception()
     {
         $product = [
-            'product_type' => 'equipment'
+            'product_type' => 'hardware'
         ];
         $setter = new ProductSetter($product);
     }
@@ -34,7 +34,7 @@ class ProductSetterTest extends TestCase {
     public function is_active_attribute_required()
     {
         $product = [
-            'product_type' => 'equipment',
+            'product_type' => 'hardware',
             'is_active' => true,
             'name' => [
                 'en' => 'Test'
@@ -50,7 +50,7 @@ class ProductSetterTest extends TestCase {
     public function is_active_have_to_be_boolean_by_exception()
     {
         $product = [
-            'product_type' => 'equipment',
+            'product_type' => 'hardware',
             'is_active' => "ok",
             'name' => [
                 'en' => 'Test'
@@ -65,7 +65,7 @@ class ProductSetterTest extends TestCase {
     public function is_active_have_to_be_boolean()
     {
         $product = [
-            'product_type' => 'equipment',
+            'product_type' => 'hardware',
             'is_active' => true,
             'name' => [
                 'en' => 'Test'
@@ -81,7 +81,7 @@ class ProductSetterTest extends TestCase {
     public function name_required_by_exception()
     {
         $product = [
-            'product_type' => 'equipment',
+            'product_type' => 'hardware',
             'is_active' => true
         ];
         $setter = new ProductSetter($product);
@@ -94,7 +94,7 @@ class ProductSetterTest extends TestCase {
     public function it_could_create_product()
     {
         $product = [
-            'product_type' => 'equipment',
+            'product_type' => 'hardware',
             'is_active' => true,
             'name' => [
                 'en' => 'Test'
@@ -110,7 +110,7 @@ class ProductSetterTest extends TestCase {
     public function it_equals_with_its_entity()
     {
         $productArray = [
-            'product_type' => 'equipment',
+            'product_type' => 'hardware',
             'is_active' => true,
             'name' => [
                 'en' => 'Test'
@@ -133,7 +133,7 @@ class ProductSetterTest extends TestCase {
     public function product_could_have_descriptions()
     {
         $productArray = [
-            'product_type' => 'equipment',
+            'product_type' => 'hardware',
             'is_active' => true,
             'name' => [
                 'en' => 'Test'
@@ -162,7 +162,7 @@ class ProductSetterTest extends TestCase {
     {
         $productArray = [
             'price' => 499.99,
-            'product_type' => 'equipment',
+            'product_type' => 'hardware',
             'is_active' => true,
             'name' => [
                 'en' => 'Test'
@@ -193,7 +193,7 @@ class ProductSetterTest extends TestCase {
     {
         $productArray = [
             'price' => -499.99,
-            'product_type' => 'equipment',
+            'product_type' => 'hardware',
             'is_active' => true,
             'name' => [
                 'en' => 'Test'
@@ -220,7 +220,7 @@ class ProductSetterTest extends TestCase {
     {
         $productArray = [
             'price' => 'low',
-            'product_type' => 'equipment',
+            'product_type' => 'hardware',
             'is_active' => true,
             'name' => [
                 'en' => 'Test'

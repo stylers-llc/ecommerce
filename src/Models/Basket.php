@@ -67,7 +67,7 @@ class Basket extends Model
         $has_shipping = false;
         foreach ($basket->basketProducts as $basketProduct) {
             $sub_total += $basketProduct->qty * $basketProduct->price;
-            if($basketProduct->product->type_taxonomy_id == \Config::get('ecommerce.product_types.equipment')) {
+            if($basketProduct->product->type_taxonomy_id == \Config::get('ecommerce.product_types.hardware')) {
                 $has_shipping = true;
             }
         }

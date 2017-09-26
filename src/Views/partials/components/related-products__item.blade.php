@@ -16,7 +16,7 @@
                     <div class="table">
                         <div class="table__cell table__cell--vmiddle w--100">
                             <b class="box__price-text">
-                                Please sign in to view the price
+                                Sign in to view price
                             </b>
                         </div>
                         <div class="table__cell table__cell--vmiddle">

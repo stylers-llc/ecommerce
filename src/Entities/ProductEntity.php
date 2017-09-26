@@ -97,7 +97,7 @@ class ProductEntity
 
             switch ($this->product->type->name)
             {
-                case 'equipment':
+                case 'hardware':
                     $item['path'] = substr($image['productListUrl'], 1);
                     break;
                 case 'course':

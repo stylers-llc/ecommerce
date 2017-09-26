@@ -36,7 +36,7 @@
                                                     </b>
                                                 @else
                                                     <b class="box__price-text">
-                                                        Please sign in to view the price
+                                                        Sign in to view price
                                                     </b>
                                                 @endif
                                             </div>
@@ -88,7 +88,7 @@
                                                             </b>
                                                         @else
                                                             <b class="box__price-text">
-                                                                Please sign in to view the price
+                                                                Sign in to view price
                                                             </b>
                                                         @endif
                                                     </div>

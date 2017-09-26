@@ -29,7 +29,7 @@
                                                             <b class="box__price box__price--small"> {{ formatPrice($relatedCourses[$i]['price']) }}</b>
                                                         @else
                                                             <b class="box__price-text">
-                                                                Please sign in to view the price
+                                                                Sign in to view price
                                                             </b>
                                                         @endif
                                                     </div>
@@ -96,7 +96,7 @@
                                                     --}}
                                                     <span class="lesson-list__type">
                                                 <i class="icon-play icon--left" aria-hidden="true"></i>
-                                                <b>VIDEO</b>
+                                                <b>{{$lesson->lessontype->name}}</b>
                                             </span>
                                                 </div>
                                             </div>
@@ -141,7 +141,7 @@
                                                             <b class="box__price box__price--small">{{ formatPrice($relatedCourses[$i+1]['price']) }}</b>
                                                         @else
                                                             <b class="box__price-text">
-                                                                Please sign in to view the price
+                                                                Sign in to view price
                                                             </b>
                                                         @endif
                                                     </div>
@@ -208,7 +208,7 @@
                                                     --}}
                                                     <span class="lesson-list__type">
                                                 <i class="icon-play icon--left" aria-hidden="true"></i>
-                                                <b>VIDEO</b>
+                                                <b>{{$lesson->lessontype->name}}</b>
                                             </span>
                                                 </div>
                                             </div>
@@ -273,7 +273,7 @@
                                                 --}}
                                                 <span class="lesson-list__type">
                                                 <i class="icon-play icon--left" aria-hidden="true"></i>
-                                                <b>VIDEO</b>
+                                                <b>{{$lesson->lessontype->name}}</b>
                                             </span>
                                             </div>
                                         </div>
@@ -332,7 +332,7 @@
                                                 --}}
                                                 <span class="lesson-list__type">
                                                 <i class="icon-play icon--left" aria-hidden="true"></i>
-                                                <b>VIDEO</b>
+                                                <b>{{$lesson->lessontype->name}}</b>
                                             </span>
                                             </div>
                                         </div>

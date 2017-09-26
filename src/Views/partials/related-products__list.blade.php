@@ -21,7 +21,7 @@
                             <div class="table h--100 box">
                                 <div class="table__row h--100">
                                     <div class="table__cell table__cell--vtop box__inner-content">
-                                        <span class="box__category box__category--small">{{ $relatedProducts[$i]['category'] }}</span>
+                                        <span class="box__category box__category--small">{{ $relatedProducts[$i]['category']['name'] }}</span>
                                         <h3 class="heading-line heading-3--big">{{ $relatedProducts[$i]['name']['en'] }}</h3>
                                         <p>{{ $relatedProducts[$i]['descriptions']['short_description']['en'] }}</p>
                                     </div>
@@ -40,8 +40,11 @@
                                                     </b>
                                                 @endif
                                             </div>
+                                            <?php
+                                                dd($relatedProducts);
+                                            ?>
                                             <div class="table__cell table__cell--vmiddle">
-                                                <a href="{{ route('site.hardware.product.details', ['id' => $relatedProducts[$i]['id'], slug' => $relatedProducts[$i]['slug']]) }}" class="btn btn--small btn--blue">
+                                                <a href="{{ route('site.hardware.product.details', ['id' => $relatedProducts[$i]['id'], 'slug' => $relatedProducts[$i]['slug']]) }}" class="btn btn--small btn--blue">
                                                     <span>buy now</span>
                                                     <i class="fa fa-shopping-cart icon icon--right" aria-hidden="true"></i>
                                                 </a>
@@ -70,7 +73,7 @@
                                     <div class="table h--100 box">
                                         <div class="table__row h--100">
                                             <div class="table__cell table__cell--vtop box__inner-content">
-                                                <span class="box__category box__category--small">{{ $relatedProducts[$i+1]['category'] }}</span>
+                                                <span class="box__category box__category--small">{{ $relatedProducts[$i+1]['category']['name'] }}</span>
                                                 <h3 class="heading-line heading-3--big">{{ $relatedProducts[$i+1]['name']['en'] }}</h3>
                                                 <p>{{ $relatedProducts[$i+1]['descriptions']['short_description']['en'] }}</p>
                                             </div>
@@ -90,7 +93,7 @@
                                                         @endif
                                                     </div>
                                                     <div class="table__cell table__cell--vmiddle">
-                                                        <a href="{{ route('site.hardware.product.details', ['id' => $relatedProducts[$i+1]['id'], slug' => $relatedProducts[$i+1]['slug']]) }}" class="btn btn--small btn--blue">
+                                                        <a href="{{ route('site.hardware.product.details', ['id' => $relatedProducts[$i+1]['id'], 'slug' => $relatedProducts[$i+1]['slug']]) }}" class="btn btn--small btn--blue">
                                                             <span>buy now</span>
                                                             <i class="fa fa-shopping-cart icon icon--right" aria-hidden="true"></i>
                                                         </a>

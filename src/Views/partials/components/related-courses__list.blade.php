@@ -17,7 +17,7 @@
                                         <div class="table__cell table__cell--vtop box__inner-content">
                                             <span class="box__category box__category--small">{{ $relatedCourses[$i]['course']['category']['name'] }}</span>
                                             <h3 class="heading-line heading-3--big"><a href="{{ route('site.academy.course.details', ['slug' => $relatedCourses[$i]['course']['slug']]) }}" class="link--purple">{{ $relatedCourses[$i]['course']['name'] }}</a></h3>
-                                            <p>{{ $relatedCourses[$i]['course']['desc'] }}</p>
+                                            <p>{{ $relatedCourses[$i]['course']['short_description'] }}</p>
                                         </div>
                                     </div>
                                     <div class="table__row">
@@ -129,7 +129,7 @@
                                         <div class="table__cell table__cell--vtop box__inner-content">
                                             <span class="box__category box__category--small">{{ $relatedCourses[$i+1]['course']['category']['name'] }}</span>
                                             <h3 class="heading-line heading-3--big"><a href="{{ route('site.academy.course.details', ['slug' => $relatedCourses[$i+1]['course']['slug']]) }}" class="link--purple">{{ $relatedCourses[$i+1]['course']['name'] }}</a></h3>
-                                            <p>{{ $relatedCourses[$i+1]['course']['desc'] }}</p>
+                                            <p>{{ $relatedCourses[$i+1]['course']['short_description'] }}</p>
                                         </div>
                                     </div>
                                     <div class="table__row">

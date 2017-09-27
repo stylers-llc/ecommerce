@@ -40,9 +40,6 @@
                                                     </b>
                                                 @endif
                                             </div>
-                                            <?php
-                                                dd($relatedProducts);
-                                            ?>
                                             <div class="table__cell table__cell--vmiddle">
                                                 <a href="{{ route('site.hardware.product.details', ['id' => $relatedProducts[$i]['id'], 'slug' => $relatedProducts[$i]['slug']]) }}" class="btn btn--small btn--blue">
                                                     <span>buy now</span>

@@ -17,7 +17,7 @@
                 <span class="box__category">{{$product['category']['name']}}</span>
                 <h2><a href="{{ route('site.hardware.product.details', ['slug' => $product['slug'], 'id' => $product['id']]) }}" class="link--purple">{{$product['name']['en']}}</a></h2>
                 @if(!empty($product['descriptions']['short_description']))
-                    <p>{{ $product['descriptions']['short_description']['en'] }}</p>
+                    <p>{!! $product['descriptions']['short_description']['en'] !!}</p>
                 @endif
                 <p><a href="{{ route('site.hardware.product.details', ['slug' => $product['slug'], 'id' => $product['id']]) }}" class="btn btn--small btn--blue" role="button"><span>More</span></a></p>
             </div>

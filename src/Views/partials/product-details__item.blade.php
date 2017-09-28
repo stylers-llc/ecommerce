@@ -16,7 +16,7 @@
                 <span class="box__category">{{$product['category']['name']}}</span>
                 <h1>{{$product['name']['en']}}</h1>
                 @if(!empty($product['descriptions']['short_description']))
-                    <p>{{$product['descriptions']['short_description']['en']}}</p>
+                    <p>{!! $product['descriptions']['short_description']['en'] !!}</p>
                 @endif
                 </div>
             <div class="box__buttons">

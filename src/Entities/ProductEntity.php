@@ -99,9 +99,21 @@ class ProductEntity
             {
                 case 'hardware':
                     $item['path'] = substr($image['productListUrl'], 1);
+                    $item['previewUrl'] = substr($image['previewUrl'], 1);
+                    $item['mainImageUrl'] = substr($image['mainImageUrl'], 1);
+                    $item['bigSizeUrl'] = substr($image['bigSizeUrl'], 1);
+                    $item['bigImageUrl'] = substr($image['bigImageUrl'], 1);
+                    $item['galleryUrl'] = substr($image['galleryUrl'], 1);
+                    $item['sliderBackgroundImageUrl'] = substr($image['sliderBackgroundImageUrl'], 1);
                     break;
                 case 'course':
                     $item['path'] = substr($image['courseListUrl'], 1);
+                    $item['previewUrl'] = substr($image['previewUrl'], 1);
+                    $item['mainImageUrl'] = substr($image['mainImageUrl'], 1);
+                    $item['bigSizeUrl'] = substr($image['bigSizeUrl'], 1);
+                    $item['bigImageUrl'] = substr($image['bigImageUrl'], 1);
+                    $item['galleryUrl'] = substr($image['galleryUrl'], 1);
+                    $item['sliderBackgroundImageUrl'] = substr($image['sliderBackgroundImageUrl'], 1);
                     break;
             }
 

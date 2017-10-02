@@ -48,13 +48,13 @@ class ProductController extends Controller
         $productList = $this->index($request, $type);
         $productListColl = collect(ProductEntity::getCollection(Product::all()));
         $categories = Category::all();
-        $catId = 1;
+        $catId = 0;
         $needScroll = false;
         $filterRoute = 'product.filter';
         $catLead = '';
 
         //Megnézzük, hogy volt-e már előzőleg szűrés ha igen akkor szűrt adatot mutatunk
-        if(Redis::get('filter') == 'hardware') {
+        if(Redis::get('filter') == 'hardware' && !isset( $request->productFilter ) ) {
             $catId = Redis::get('filter_cat');
             Redis::set('filter', '');
             $needScroll = true;
@@ -64,7 +64,6 @@ class ProductController extends Controller
                 return $value['category']['id'] == $catId;
             });
         }
-
 
         if( isset( $request->productFilter ) && $request->filterCategory != 0) {
             Redis::set('filter', 'hardware');
@@ -78,7 +77,6 @@ class ProductController extends Controller
                 return $value['category']['id'] == $catId;
             });
         }
-
 
         return View::make('productList', ['productList' => $productList, 'catId' => $catId, 'categories' => $categories, 'filterRoute'=>$filterRoute, 'needScroll' => $needScroll, 'catLead' => $catLead]);
     }

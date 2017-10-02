@@ -28,11 +28,11 @@
 </script>
 
 @if($needScroll)
-<script>
-    $(function() {
-        $('html,body').animate({
-                scrollTop: $("#product-list").offset().top},
-            'slow');
-    });
-</script>
+    <script>
+        $(function() {
+            $('html,body').animate({
+                    scrollTop: $(".breadcrumb-wrapper").offset().top},
+                'slow');
+        });
+    </script>
 @endif

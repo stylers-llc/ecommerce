@@ -23,7 +23,11 @@
             <h1 style="font-family: Arial, Helvetica, sans-serif; color: #231F20; text-align: left; font-weight: bold; font-size: 17px; line-height: 23px; margin: 0 0 15px 0">Dear <strong>{{ $basketInfo->user->name }}</strong></h1>
 
             <p style="font-family: Arial, Helvetica, sans-serif; color: #231F20; text-align: left; font-weight: normal; font-size: 15px; line-height: 22px; margin: 0;">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium, consectetur dolorem dolorum ea exercitationem explicabo facere fugiat harum illum ipsum magnam magni molestias nihil, nobis recusandae saepe vitae voluptates!
+                Thank you for your order! Please see details of your purchase below. In case of any questions, please do not hesitate to contact us!
+            </p>
+            <p>
+                Sincerely, <br />
+                The Corozon Team
             </p>
         </td>
         <td width="20" style="width: 20px;">

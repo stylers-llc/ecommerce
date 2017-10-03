@@ -30,9 +30,9 @@ class ProductController extends Controller
         }
 
         if($typeTx) {
-            $products = Product::where('type_taxonomy_id', $typeTx->id)->get();
+            $products = Product::where('type_taxonomy_id', $typeTx->id)->where('is_active', 1)->get();
         } else {
-            $products = Product::all();
+            $products = Product::where('is_active', 1)->get();
         }
 
         return ['success' => true, 'data' => ProductEntity::getCollection($products)];
@@ -99,6 +99,7 @@ class ProductController extends Controller
     }
 
     public function update(Request $request, $id = null) {
+
         $product = null;
         $isUpdate = false;
 

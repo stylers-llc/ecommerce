@@ -8,8 +8,8 @@
                 @if(!empty($relatedCourses[$i]))
                     <div class="col-xs-12 col-lg-6 table__cell table__cell--vtop h--100">
                         <div class="table h--100">
-                            <div class="table__cell table__cell--vtop h--100 col-xs-12 col-sm-6 box__img-content" style="background-image: url('{{ $relatedCourses[0]['course']['images']['url']['list'] }}')">
-                                <img src="{{ $relatedCourses[$i]['course']['images']['url']['list'] }}" alt="{{ $relatedCourses[$i]['course']['name'] }}" class="visible-xs">
+                            <div class="table__cell table__cell--vtop h--100 col-xs-12 col-sm-6 box__img-content" style="background-image: url('/{{ $relatedCourses[$i]['gallery']['items'][0]['path'] }}')">
+                                <img src="{{ $relatedCourses[$i]['gallery']['items'][0]['path'] }}" alt="{{ $relatedCourses[$i]['course']['name'] }}" class="visible-xs">
                             </div>
                             <div class="table__cell table__cell--vtop h--100 col-xs-12 col-sm-6 box__text-content bg--lightgray">
                                 <div class="table h--100 box">
@@ -17,7 +17,7 @@
                                         <div class="table__cell table__cell--vtop box__inner-content">
                                             <span class="box__category box__category--small">{{ $relatedCourses[$i]['course']['category']['name'] }}</span>
                                             <h3 class="heading-line heading-3--big"><a href="{{ route('site.academy.course.details', ['slug' => $relatedCourses[$i]['course']['slug']]) }}" class="link--purple">{{ $relatedCourses[$i]['course']['name'] }}</a></h3>
-                                            <p>{{ $relatedCourses[$i]['course']['short_description'] }}</p>
+                                            <p>{!!  $relatedCourses[$i]['course']['short_description'] !!}</p>
                                         </div>
                                     </div>
                                     <div class="table__row">
@@ -120,8 +120,8 @@
                 @if(!empty($relatedCourses[$i+1]))
                     <div class="col-xs-12 col-lg-6 table__cell table__cell--vtop h--100">
                         <div class="table h--100">
-                            <div class="table__cell table__cell--vtop h--100 col-xs-12 col-sm-6 box__img-content" style="background-image: url('{{$relatedCourses[1]['course']['images']['url']['list']}}')">
-                                <img src="{{ $relatedCourses[$i+1]['course']['images']['url']['list'] }}" alt="{{ $relatedCourses[$i+1]['course']['name'] }}" class="visible-xs">
+                            <div class="table__cell table__cell--vtop h--100 col-xs-12 col-sm-6 box__img-content" style="background-image: url('/{{$relatedCourses[$i+1]['gallery']['items'][0]['path']}}')">
+                                <img src="{{ $relatedCourses[$i+1]['gallery']['items'][0]['path'] }}" alt="{{ $relatedCourses[$i+1]['course']['name'] }}" class="visible-xs">
                             </div>
                             <div class="table__cell table__cell--vtop h--100 col-xs-12 col-sm-6 box__text-content bg--lightgray">
                                 <div class="table h--100 box">
@@ -129,7 +129,7 @@
                                         <div class="table__cell table__cell--vtop box__inner-content">
                                             <span class="box__category box__category--small">{{ $relatedCourses[$i+1]['course']['category']['name'] }}</span>
                                             <h3 class="heading-line heading-3--big"><a href="{{ route('site.academy.course.details', ['slug' => $relatedCourses[$i+1]['course']['slug']]) }}" class="link--purple">{{ $relatedCourses[$i+1]['course']['name'] }}</a></h3>
-                                            <p>{{ $relatedCourses[$i+1]['course']['short_description'] }}</p>
+                                            <p>{!!  $relatedCourses[$i+1]['course']['short_description'] !!}</p>
                                         </div>
                                     </div>
                                     <div class="table__row">

@@ -8,9 +8,9 @@
                 @if(!empty($relatedProducts[$i]))
                 <div class="col-xs-12 col-lg-6 table__cell table__cell--vtop h--100">
                     <div class="table h--100">
-                        @if(!empty($relatedProducts[$i]['gallery']['items'][0]['thumbnails'][1]['path']))
-                            <div class="table__cell table__cell--vtop h--100 col-xs-12 col-sm-6 box__img-content" style="background-image: url('/{{ $relatedProducts[$i]['gallery']['items'][0]['thumbnails'][1]['path'] }}')">
-                                <img src="/{{ $relatedProducts[$i]['gallery']['items'][0]['thumbnails'][1]['path'] }}" alt="{{ $relatedProducts[$i]['name']['en'] }}" class="visible-xs">
+                        @if(!empty($relatedProducts[$i]['gallery']['items'][0]['path']))
+                            <div class="table__cell table__cell--vtop h--100 col-xs-12 col-sm-6 box__img-content" style="background-image: url('/{{ $relatedProducts[$i]['gallery']['items'][0]['path'] }}')">
+                                <img src="/{{ $relatedProducts[$i]['gallery']['items'][0]['path'] }}" alt="{{ $relatedProducts[$i]['name']['en'] }}" class="visible-xs">
                             </div>
                         @else
                             <div class="table__cell table__cell--vtop h--100 col-xs-12 col-sm-6 box__img-content" style="background-image: url('/img/tmp/top-products-1_375x400.jpg')">
@@ -23,7 +23,7 @@
                                     <div class="table__cell table__cell--vtop box__inner-content">
                                         <span class="box__category box__category--small">{{ $relatedProducts[$i]['category']['name'] }}</span>
                                         <h3 class="heading-line heading-3--big">{{ $relatedProducts[$i]['name']['en'] }}</h3>
-                                        <p>{{ $relatedProducts[$i]['descriptions']['short_description']['en'] }}</p>
+                                        <p>{!!  $relatedProducts[$i]['descriptions']['short_description']['en'] !!}</p>
                                     </div>
                                 </div>
                                 <div class="table__row">
@@ -57,9 +57,9 @@
                 @if(!empty($relatedProducts[$i+1]))
                 <div class="col-xs-12 col-lg-6 table__cell table__cell--vtop h--100">
                             <div class="table h--100">
-                                @if(!empty($relatedProducts[$i+1]['gallery']['items'][0]['thumbnails'][1]['path']))
-                                    <div class="table__cell table__cell--vtop h--100 col-xs-12 col-sm-6 box__img-content" style="background-image: url('/{{ $relatedProducts[$i+1]['gallery']['items'][0]['thumbnails'][1]['path'] }}')">
-                                        <img src="/{{ $relatedProducts[$i+1]['gallery']['items'][0]['thumbnails'][1]['path'] }}" alt="{{ $relatedProducts[$i+1]['name']['en'] }}" class="visible-xs">
+                                @if(!empty($relatedProducts[$i+1]['gallery']['items'][0]['path']))
+                                    <div class="table__cell table__cell--vtop h--100 col-xs-12 col-sm-6 box__img-content" style="background-image: url('/{{ $relatedProducts[$i+1]['gallery']['items'][0]['path'] }}')">
+                                        <img src="/{{ $relatedProducts[$i+1]['gallery']['items'][0]['path'] }}" alt="{{ $relatedProducts[$i+1]['name']['en'] }}" class="visible-xs">
                                     </div>
                                 @else
                                     <div class="table__cell table__cell--vtop h--100 col-xs-12 col-sm-6 box__img-content" style="background-image: url('/img/tmp/top-products-1_375x400.jpg')">
@@ -72,7 +72,7 @@
                                             <div class="table__cell table__cell--vtop box__inner-content">
                                                 <span class="box__category box__category--small">{{ $relatedProducts[$i+1]['category']['name'] }}</span>
                                                 <h3 class="heading-line heading-3--big">{{ $relatedProducts[$i+1]['name']['en'] }}</h3>
-                                                <p>{{ $relatedProducts[$i+1]['descriptions']['short_description']['en'] }}</p>
+                                                <p>{!! $relatedProducts[$i+1]['descriptions']['short_description']['en'] !!}</p>
                                             </div>
                                         </div>
                                         <div class="table__row">

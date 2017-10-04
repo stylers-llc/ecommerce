@@ -228,6 +228,10 @@
                             </div>
                         </div>
                     </div>
+                    @else
+                            <div class="col-xs-12 col-lg-6 table__cell table__cell--vtop h--100">
+                                &nbsp;
+                            </div>
                 @endif
             </div>
         </div>

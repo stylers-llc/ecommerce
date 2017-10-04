@@ -29,9 +29,11 @@ class ProductController extends Controller
             } catch (ModelNotFoundException $ex) {}
         }
 
+
         if($typeTx) {
             $products = Product::where('type_taxonomy_id', $typeTx->id)->where('is_active', 1)->get();
         } else {
+
             $products = Product::where('is_active', 1)->get();
         }
 
@@ -46,7 +48,7 @@ class ProductController extends Controller
 
     public function productList(Request $request, $type = null) {
         $productList = $this->index($request, $type);
-        $productListColl = collect(ProductEntity::getCollection(Product::all()));
+        $productListColl = collect(ProductEntity::getCollection(Product::where('is_active', 1)->get()));
         $categories = Category::all();
         $catId = 0;
         $needScroll = false;

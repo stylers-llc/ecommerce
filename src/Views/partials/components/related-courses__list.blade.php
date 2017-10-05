@@ -48,7 +48,7 @@
                                             <div>
                                                 <!-- .collapse-course-1 az elso elemnel, collapse-course-2 a masodik elemnel es igy tovabb... -->
                                                 <a role="button" data-toggle="collapse" href=".collapse-course-{{$i + 1}}" aria-expanded="false" aria-controls="collapse-course-{{$i + 1}}" class="link link--purple link--toggle">
-                                                    <span>List of lesson</span>
+                                                    <span>List of lessons</span>
                                                     <i class="icon-arrowdown icon--right" aria-hidden="true"></i>
                                                 </a>
                                             </div>

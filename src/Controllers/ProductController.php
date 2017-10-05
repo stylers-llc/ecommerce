@@ -49,7 +49,12 @@ class ProductController extends Controller
     public function productList(Request $request, $type = null) {
         $productList = $this->index($request, $type);
         $productListColl = collect(ProductEntity::getCollection(Product::where('is_active', 1)->get()));
-        $categories = Category::all();
+        $categoriesHelper = Category::all();
+        foreach ($categoriesHelper as $cat) {
+            if ( ! $cat->courses()->get()->isEmpty()  ) {
+                $categories[] =  $cat;
+            }
+        }
         $catId = 0;
         $needScroll = false;
         $filterRoute = 'product.filter';

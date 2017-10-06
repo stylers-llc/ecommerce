@@ -33,18 +33,23 @@
                                                             </b>
                                                         @endif
                                                     </div>
-
-                                                    @if ($relatedCourses[$i]['course']['showPrice'])
-                                                        <div class="table__cell table__cell--vmiddle">
-                                                            <a href="#" class="btn btn--small btn--blue">
-                                                                <span>buy now</span>
-                                                                <i class="icon-cart icon--right" aria-hidden="true"></i>
-                                                            </a>
-                                                        </div>
-                                                    @endif
+                                                    <div class="table__cell table__cell--vmiddle">
+                                                        <a href="{{ route('site.academy.course.details', ['slug' => $relatedCourses[$i]['course']['slug']]) }}" class="btn btn--small btn--blue">
+                                                            <span>More</span>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                                 <hr />
+                                                @else
+                                                <div class="table">
+                                                    <div class="table__cell table__cell--vmiddle">
+                                                        <a href="{{ route('site.academy.course.details', ['slug' => $relatedCourses[$i]['course']['slug']]) }}" class="btn btn--small btn--blue">
+                                                            <span>More</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
                                             @endif
+
                                             <div>
                                                 <!-- .collapse-course-1 az elso elemnel, collapse-course-2 a masodik elemnel es igy tovabb... -->
                                                 <a role="button" data-toggle="collapse" href=".collapse-course-{{$i + 1}}" aria-expanded="false" aria-controls="collapse-course-{{$i + 1}}" class="link link--purple link--toggle">
@@ -145,17 +150,21 @@
                                                             </b>
                                                         @endif
                                                     </div>
-
-                                                    @if ($relatedCourses[$i+1]['course']['showPrice'])
-                                                        <div class="table__cell table__cell--vmiddle">
-                                                            <a href="#" class="btn btn--small btn--blue">
-                                                                <span>buy now</span>
-                                                                <i class="icon-cart icon--right" aria-hidden="true"></i>
-                                                            </a>
-                                                        </div>
-                                                    @endif
+                                                    <div class="table__cell table__cell--vmiddle">
+                                                        <a href="{{ route('site.academy.course.details', ['slug' => $relatedCourses[$i]['course']['slug']]) }}" class="btn btn--small btn--blue">
+                                                            <span>More</span>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                                 <hr />
+                                            @else
+                                                <div class="table">
+                                                    <div class="table__cell table__cell--vmiddle">
+                                                        <a href="{{ route('site.academy.course.details', ['slug' => $relatedCourses[$i]['course']['slug']]) }}" class="btn btn--small btn--blue">
+                                                            <span>More</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
                                             @endif
                                             <div>
                                                 <!-- .collapse-course-1 az elso elemnel, collapse-course-2 a masodik elemnel es igy tovabb... -->

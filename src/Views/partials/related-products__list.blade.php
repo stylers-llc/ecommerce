@@ -42,8 +42,7 @@
                                             </div>
                                             <div class="table__cell table__cell--vmiddle">
                                                 <a href="{{ route('site.hardware.product.details', ['id' => $relatedProducts[$i]['id'], 'slug' => $relatedProducts[$i]['slug']]) }}" class="btn btn--small btn--blue">
-                                                    <span>buy now</span>
-                                                    <i class="fa fa-shopping-cart icon icon--right" aria-hidden="true"></i>
+                                                    <span>More</span>
                                                 </a>
                                             </div>
                                         </div>
@@ -91,8 +90,7 @@
                                                     </div>
                                                     <div class="table__cell table__cell--vmiddle">
                                                         <a href="{{ route('site.hardware.product.details', ['id' => $relatedProducts[$i+1]['id'], 'slug' => $relatedProducts[$i+1]['slug']]) }}" class="btn btn--small btn--blue">
-                                                            <span>buy now</span>
-                                                            <i class="fa fa-shopping-cart icon icon--right" aria-hidden="true"></i>
+                                                            <span>More</span>
                                                         </a>
                                                     </div>
                                                 </div>

@@ -74,8 +74,7 @@
             <section class="section--main bg--white pt--90">
                 <div class="container">
                     <h3 class="text-center mb--70">
-                        <span>Corozon Academy</span>
-                        <span class="text--light-italic">/ Related courses</span>
+                        <span>Related Courses</span>
                     </h3>
 
                     @include('partials.components.related-courses__list')
@@ -87,8 +86,7 @@
         <section class="section--main bg--white pt--90">
             <div class="container">
                 <h3 class="text-center mb--70">
-                    <span>Corozon Hardware</span>
-                    <span class="text--light-italic">/ Related hardware</span>
+                    <span>Related Hardware</span>
                 </h3>
 
                 @include('partials.related-products__list')

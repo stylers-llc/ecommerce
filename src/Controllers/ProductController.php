@@ -31,7 +31,7 @@ class ProductController extends Controller
 
 
         if($typeTx) {
-            $products = Product::where('type_taxonomy_id', $typeTx->id)->where('is_active', 1)->get();
+            $products = Product::where('type_taxonomy_id', $typeTx->id)->where('is_active', 1)->orderBy('updated_at', 'desc')->get();
         } else {
 
             $products = Product::where('is_active', 1)->get();

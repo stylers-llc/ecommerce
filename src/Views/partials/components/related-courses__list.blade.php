@@ -362,7 +362,7 @@
     </div>
 
     <div class="text-center">
-        <a href="{{ route('site.myacademy.course.list') }}" class="btn btn--big btn--blue btn--340 btn--section">
+        <a href="{{ route('site.academy.course.list') }}" class="btn btn--big btn--blue btn--340 btn--section">
             <span>Check out the full list of academy </span>
         </a>
     </div>

@@ -70,7 +70,7 @@
 
             </div>
         </section>
-        @if(count($relatedCourses) > 1)
+        @if(count($relatedCourses))
             <section class="section--main bg--white pt--90">
                 <div class="container">
                     <h3 class="text-center mb--70">
@@ -82,7 +82,7 @@
                 </div>
             </section>
         @endif
-        @if(count($relatedProducts) > 1)
+        @if(count($relatedProducts))
         <section class="section--main bg--white pt--90">
             <div class="container">
                 <h3 class="text-center mb--70">

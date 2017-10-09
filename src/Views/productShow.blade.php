@@ -70,30 +70,32 @@
 
             </div>
         </section>
-        @if(count($relatedCourses))
-            <section class="section--main bg--white pt--90">
-                <div class="container">
-                    <h3 class="text-center mb--70">
-                        <span>Related Courses</span>
-                    </h3>
+        <div class="related-list bg--white">
+            @if(count($relatedCourses))
+                <section class="section--main">
+                    <div class="container">
+                        <h3 class="text-center mb--70">
+                            <span>Related Courses</span>
+                        </h3>
 
-                    @include('partials.components.related-courses__list')
+                        @include('partials.components.related-courses__list')
 
-                </div>
-            </section>
-        @endif
-        @if(count($relatedProducts))
-        <section class="section--main bg--white pt--90">
-            <div class="container">
-                <h3 class="text-center mb--70">
-                    <span>Related Hardware</span>
-                </h3>
+                    </div>
+                </section>
+            @endif
+            @if(count($relatedProducts))
+                <section class="section--main">
+                    <div class="container">
+                        <h3 class="text-center mb--70">
+                            <span>Related Hardware</span>
+                        </h3>
 
-                @include('partials.related-products__list')
+                        @include('partials.related-products__list')
 
-            </div>
-        </section>
-        @endif
+                    </div>
+                </section>
+            @endif
+        </div>
 
     </main>
     <script type="text/javascript" src="/plugins/ecommerce/cart.js"></script>

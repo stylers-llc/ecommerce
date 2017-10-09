@@ -49,12 +49,14 @@ class ProductController extends Controller
     public function productList(Request $request, $type = null) {
         $productList = $this->index($request, $type);
         $productListColl = collect(ProductEntity::getCollection(Product::where('is_active', 1)->get()));
+
         $categoriesHelper = Category::all();
         foreach ($categoriesHelper as $cat) {
-            if ( ! $cat->courses()->get()->isEmpty()  ) {
+            if ( ! $cat->activeHardwers()->get()->isEmpty() ) {
                 $categories[] =  $cat;
             }
         }
+
         $catId = 0;
         $needScroll = false;
         $filterRoute = 'product.filter';
@@ -84,6 +86,7 @@ class ProductController extends Controller
                 return $value['category']['id'] == $catId;
             });
         }
+
 
         return View::make('productList', ['productList' => $productList, 'catId' => $catId, 'categories' => $categories, 'filterRoute'=>$filterRoute, 'needScroll' => $needScroll, 'catLead' => $catLead]);
     }

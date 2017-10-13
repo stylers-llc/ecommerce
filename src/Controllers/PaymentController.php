@@ -26,7 +26,7 @@ class PaymentController extends Controller
         }
 
         if(Cart::getProductCount() < 1){
-            Redirect::getUrlGenerator('ecommerce/products/list');
+            return Redirect::route('ecommerce.cart.list');
         }
 
         $delivery = \Session::get('delivery');

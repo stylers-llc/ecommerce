@@ -42,11 +42,28 @@
                         </div>
                     @endif
 
+                    @if (!$product['embedVideos']->isEmpty() )
+                            <div class="box box--left-gradient bg--white documents-box">
+                                <div class="box__inner-content">
+                                    <h2 class="heading-line heading-2--big inline">Embed videos</h2>
+                                    <div class="documents-box__files clearfix">
+                                        @foreach($product['embedVideos'] as $videos)
+                                            <div class="col-sm-6 text-center" style="padding: 5px;">
+                                                <iframe id="ytplayer" type="text/html" width="450" height="300"
+                                                        src="{{ $videos::escaper($videos->url) }}"
+                                                        frameborder="0" allowfullscreen></iframe>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                    @endif
+                        <br /><br />
                     @if (!empty($product['files']['items']))
                         <div class="box box--left-gradient bg--white documents-box">
                             <div class="box__inner-content">
                                 <h2 class="heading-line heading-2--big inline">Toolkit</h2>
-    {{--                            <a href="#" class="btn btn--small btn--red documents-box__btn">
+                {{--                            <a href="#" class="btn btn--small btn--red documents-box__btn">
                                     <span>download all documents</span>
                                     <i class="icon-download icon--right" aria-hidden="true"></i>
                                 </a>--}}
@@ -66,37 +83,37 @@
                         </div>
                     @endif
 
-                </div>
+</div>
 
-            </div>
-        </section>
-        <div class="related-list bg--white">
-            @if(count($relatedCourses))
-                <section class="section--main">
-                    <div class="container">
-                        <h3 class="text-center mb--70">
-                            <span>Related Courses</span>
-                        </h3>
+</div>
+</section>
+<div class="related-list bg--white">
+@if(count($relatedCourses))
+<section class="section--main">
+    <div class="container">
+        <h3 class="text-center mb--70">
+            <span>Related Courses</span>
+        </h3>
 
-                        @include('partials.components.related-courses__list')
+        @include('partials.components.related-courses__list')
 
-                    </div>
-                </section>
-            @endif
-            @if(count($relatedProducts))
-                <section class="section--main">
-                    <div class="container">
-                        <h3 class="text-center mb--70">
-                            <span>Related Hardware</span>
-                        </h3>
+    </div>
+</section>
+@endif
+@if(count($relatedProducts))
+<section class="section--main">
+    <div class="container">
+        <h3 class="text-center mb--70">
+            <span>Related Hardware</span>
+        </h3>
 
-                        @include('partials.related-products__list')
+        @include('partials.related-products__list')
 
-                    </div>
-                </section>
-            @endif
-        </div>
+    </div>
+</section>
+@endif
+</div>
 
-    </main>
-    <script type="text/javascript" src="/plugins/ecommerce/cart.js"></script>
+</main>
+<script type="text/javascript" src="/plugins/ecommerce/cart.js"></script>
 @endsection

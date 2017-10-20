@@ -45,7 +45,7 @@
                     @if (!empty($product['files']['items']))
                         <div class="box box--left-gradient bg--white documents-box">
                             <div class="box__inner-content">
-                                <h2 class="heading-line heading-2--big inline">Documents</h2>
+                                <h2 class="heading-line heading-2--big inline">Toolkit</h2>
     {{--                            <a href="#" class="btn btn--small btn--red documents-box__btn">
                                     <span>download all documents</span>
                                     <i class="icon-download icon--right" aria-hidden="true"></i>

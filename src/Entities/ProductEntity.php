@@ -3,6 +3,7 @@
 namespace Stylers\Ecommerce\Entities;
 
 
+use App\EmbedVideos;
 use Stylers\Ecommerce\Models\Product;
 use Stylers\Ecommerce\Models\ProductClassification;
 use Stylers\Media\Models\Gallery;
@@ -33,7 +34,8 @@ class ProductEntity
             'descriptions' => $this->getProductDescriptionsData($this->product->id),
             'price' => $this->product->price,
             'slug' => $this->product->slug,
-            'is_singleton' => (bool) $this->product->is_singleton
+            'is_singleton' => (bool) $this->product->is_singleton,
+            'embedVideos' => $this->getEmbedVideos($this->product->id)
         ];
 
         //$pc = ProductClassification::where('product_id',$this->product->id)->where('taxonomy_id',\Config::get('ecommerce.category'))->first();
@@ -49,6 +51,10 @@ class ProductEntity
         $return['files'] = $this->getProductFiles();
 
         return $return;
+    }
+
+    protected function getEmbedVideos($product_id) {
+        return EmbedVideos::where('product_id', $product_id)->get();
     }
 
     protected function getDescriptionWithTranslationsData(Description $description) {

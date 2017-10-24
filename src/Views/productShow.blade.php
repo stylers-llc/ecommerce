@@ -49,9 +49,13 @@
                                     <div class="documents-box__files clearfix">
                                         @foreach($product['embedVideos'] as $videos)
                                             <div class="col-sm-6 text-center" style="padding: 5px;">
-                                                <iframe id="ytplayer" type="text/html" width="450" height="300"
-                                                        src="{{ $videos::escaper($videos->url) }}"
+                                                @if($videos::parseVideos($videos->url)[0]['type'] == 'youtube')
+                                                    <iframe id="ytplayer" type="text/html" width="450" height="300"
+                                                        src="{{ $videos::parseVideos($videos->url)[0]['url'] }}"
                                                         frameborder="0" allowfullscreen></iframe>
+                                                @else
+                                                    <iframe src="{{ $videos::parseVideos($videos->url)[0]['url'] }}" width="450" height="300" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                                @endif
                                             </div>
                                         @endforeach
                                     </div>

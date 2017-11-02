@@ -46,7 +46,7 @@ class Basket extends Model
 
     public function basketProducts()
     {
-        return $this->hasMany(BasketProduct::class, 'basket_id', 'id');
+        return $this->hasMany(BasketProduct::class, 'basket_id', 'id')->withTrashed();
     }
 
     public function transactions()

@@ -45,7 +45,7 @@
                     @if (!$product['embedVideos']->isEmpty() )
                             <div class="box box--left-gradient bg--white documents-box">
                                 <div class="box__inner-content">
-                                    <h2 class="heading-line heading-2--big inline">Embed videos</h2>
+                                    <h2 class="heading-line heading-2--big inline">Videos</h2>
                                     <div class="documents-box__files clearfix">
                                         @foreach($product['embedVideos'] as $videos)
                                             <div class="col-sm-6 text-center" style="padding: 5px;">

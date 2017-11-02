@@ -54,7 +54,7 @@ class ProductEntity
     }
 
     protected function getEmbedVideos($product_id) {
-        return EmbedVideos::where('product_id', $product_id)->get();
+       return EmbedVideos::where('product_id', $product_id)->get();
     }
 
     protected function getDescriptionWithTranslationsData(Description $description) {

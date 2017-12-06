@@ -38,7 +38,7 @@ class PayPal
     public function createPayment()
     {
         $this->_payer->setPayerInfo($this->getPayerInfo());
-        $this->_payer->setPaymentMethod(Config::get('ecommerce.paypal.payment_method.paypal'));
+        $this->_payer->setPaymentMethod(Config::get('ecommerce.paypal.payment_method.credit_card'));
 
         $products = $this->_basket->basketProducts();
 

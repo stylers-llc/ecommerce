@@ -173,7 +173,14 @@ class ProductEntity
         foreach ($products as $product) {
             $return[] = (new self($product))->getFrontendData($additions);
         }
+
+        usort($return, function($a, $b) { return strcmp($a["name"]["en"], $b["name"]["en"]); });
+
         return $return;
+    }
+
+    public function compareByName($a, $b) {
+        return strcmp($a["name"], $b["name"]);
     }
 
 }

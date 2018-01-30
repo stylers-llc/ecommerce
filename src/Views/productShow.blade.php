@@ -67,13 +67,9 @@
                         <div class="box box--left-gradient bg--white documents-box">
                             <div class="box__inner-content">
                                 <h2 class="heading-line heading-2--big inline">Toolkit</h2>
-                {{--                            <a href="#" class="btn btn--small btn--red documents-box__btn">
-                                    <span>download all documents</span>
-                                    <i class="icon-download icon--right" aria-hidden="true"></i>
-                                </a>--}}
                                 <div class="documents-box__files clearfix">
                                     @foreach($product['files']['items'] as $file)
-                                    <a href="/documents/download/{{$file['id']}}" download="{{$file['name']}}" class="documents-box__file">
+                                    <a href="/hardware/download/{{$file['id']}}" download="{{$file['name']}}" class="documents-box__file">
                                     <span class="documents-box__file-icon">
                                         <i class="icon-file icon" aria-hidden="true"></i>
                                     </span>
